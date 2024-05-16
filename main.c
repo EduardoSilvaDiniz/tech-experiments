@@ -137,27 +137,19 @@ TASK* createTaskByScanf() {
     return createTask(id, description);
 }
 
-// QUEUE -------------------------------
+// QUEUE ----------------------------------
+// 1
 void putToPendingQueue(TASK* newTask) {
-    printf("Putting Task to Pending Queue");
+    printf("\nPutting Task to Pending Queue\n");
     TASK* swapGlobalQueue = GlobalQueue;
     while (swapGlobalQueue->prox != NULL)
       swapGlobalQueue = swapGlobalQueue->prox;
     swapGlobalQueue->prox=newTask;
 }
 
-TASK* getFromPendingQueue() {
-    printf("Getting Task from Pending Queue");
-    TASK* swapGlobalQueue = GlobalQueue;
-    swapGlobalQueue = swapGlobalQueue->prox;
-
-    GlobalQueue->prox = createTask(swapGlobalQueue->id, swapGlobalQueue->description);
-
-    return NULL; // Return NULL if Queue is empty
-}
-
+// 2
 void seeAllPendingQueue() {
-    printf("Printing All Pending Queue\n");
+    printf("\nPrinting All Pending Queue\n");
     TASK* swapGlobalQueue = GlobalQueue;
     while (swapGlobalQueue->prox != NULL) {
       swapGlobalQueue = swapGlobalQueue->prox;
@@ -165,45 +157,79 @@ void seeAllPendingQueue() {
     }
 }
 
-// LIST --------------------------------
-void addToCompletedList(TASK* newTask) {
-    printf("Adding Task to Completed List");
+// 3
+TASK* getFromPendingQueue() {
+    printf("\nGetting Task from Pending Queue\n");
+    TASK* swapGlobalQueue = GlobalQueue;
 
+    if (swapGlobalQueue->prox == NULL) {
+      return NULL; // Return NULL if Queue is empty
+    }
+
+    TASK* newTask = createTask(swapGlobalQueue->prox->id, swapGlobalQueue->prox->description);
+    TASK* swapProx = swapGlobalQueue->prox->prox;
+    swapGlobalQueue->prox = swapProx;
+
+    return newTask;
+}
+// -------------------------------------------
+
+// LIST -----------------------------------
+// 4
+void seeAllCompletedList() {
+    printf("\nPrinting All Completed List\n");
+    TASK* swapGlobalList = GlobalList;
+    while (swapGlobalList->prox != NULL) {
+      swapGlobalList = swapGlobalList->prox;
+      printf("id: %d description: %s\n", swapGlobalList->id, swapGlobalList->description);
+    }
 }
 
+// 5
 TASK* removeFromCompletedListByItsId(int id) {
-    printf("Removing Task from Completed List");
-
-    // YOUR CODE HERE
+    printf("\nRemoving Task from Completed List\n");
+    TASK* swapGlobalList = GlobalList;
+    while (swapGlobalList->prox != NULL) {
+      if (swapGlobalList->id == id) {
+        return swapGlobalList;
+      }
+      swapGlobalList = swapGlobalList->prox;
+    }
     return NULL; // Return NULL if ID not exist
 }
 
-void seeAllCompletedList() {
-    printf("Printing All Completed List");
+// 3
+void addToCompletedList(TASK* newTask) {
+    printf("\nAdding Task to Completed List\n");
+    TASK* swapGlobalList = GlobalList;
+    while (swapGlobalList->prox != NULL) {
+      swapGlobalList = swapGlobalList->prox;
+    }
+    swapGlobalList->prox = newTask;
+}
+
+// STACK -----------------------------------
+// 6
+void seeAllDraftStack() {
+    printf("\nPrinting All Draft Stack\n");
 
     // YOUR CODE HERE
 }
 
-
-// STACK -------------------------------
+// 5
 void pushToDraftStack(TASK* newTask) {
-    printf("Pushing Task to Draft Stack");
-
-    // YOUR CODE HERE
+    printf("\nPushing Task to Draft Stack\n");
+    TASK* swapGlobalStack = GlobalStack;
 }
 
+// 7
 TASK* popFromDraftStack() {
-    printf("Popping Task to Draft Stack");
+    printf("\nPopping Task to Draft Stack\n");
 
     // YOUR CODE HERE
     return NULL; // Return NULL if Stack is empty
 }
 
-void seeAllDraftStack() {
-    printf("Printing All Draft Stack");
-
-    // YOUR CODE HERE
-}
 
 // MENU
 void displayMenu() {
