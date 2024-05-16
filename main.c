@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #define MAX_DESCRIPTION_SIZE 100
 
 typedef struct Task {
@@ -31,8 +32,15 @@ void seeAllDraftStack();
 // MENU
 void displayMenu();
 
+TASK* GlobalQueue;
+TASK* GlobalList;
+TASK* GlobalStack;
 int main() {
     int choice;
+    GlobalQueue = malloc(sizeof(TASK));
+    GlobalList  = malloc(sizeof(TASK));
+    GlobalStack = malloc(sizeof(TASK));
+
     printf("################# TASK MANAGER SYSTEM #################");
 
     do {
@@ -99,7 +107,7 @@ int main() {
         }
     } while (choice != 0);
 
-    printf("################# SYSTEM SHUT DOWN #################");
+    printf("################# SYSTEM SHUT DOWN #################\n");
 }
 
 // CONSTRUCTOR
@@ -129,11 +137,38 @@ TASK* createTaskByScanf() {
     return createTask(id, description);
 }
 
-// LIST
+// QUEUE -------------------------------
+void putToPendingQueue(TASK* newTask) {
+    printf("Putting Task to Pending Queue");
+    TASK* swapGlobalQueue = GlobalQueue;
+    while (swapGlobalQueue->prox != NULL)
+      swapGlobalQueue = swapGlobalQueue->prox;
+    swapGlobalQueue->prox=newTask;
+}
+
+TASK* getFromPendingQueue() {
+    printf("Getting Task from Pending Queue");
+    TASK* swapGlobalQueue = GlobalQueue;
+    swapGlobalQueue = swapGlobalQueue->prox;
+
+    GlobalQueue->prox = createTask(swapGlobalQueue->id, swapGlobalQueue->description);
+
+    return NULL; // Return NULL if Queue is empty
+}
+
+void seeAllPendingQueue() {
+    printf("Printing All Pending Queue\n");
+    TASK* swapGlobalQueue = GlobalQueue;
+    while (swapGlobalQueue->prox != NULL) {
+      swapGlobalQueue = swapGlobalQueue->prox;
+      printf("id: %d description: %s\n", swapGlobalQueue->id, swapGlobalQueue->description);
+    }
+}
+
+// LIST --------------------------------
 void addToCompletedList(TASK* newTask) {
     printf("Adding Task to Completed List");
 
-    // YOUR CODE HERE
 }
 
 TASK* removeFromCompletedListByItsId(int id) {
@@ -149,27 +184,8 @@ void seeAllCompletedList() {
     // YOUR CODE HERE
 }
 
-// QUEUE
-void putToPendingQueue(TASK* newTask) {
-    printf("Putting Task to Pending Queue");
 
-    // YOUR CODE HERE
-}
-
-TASK* getFromPendingQueue() {
-    printf("Getting Task from Pending Queue");
-
-    // YOUR CODE HERE
-    return NULL; // Return NULL if Queue is empty
-}
-
-void seeAllPendingQueue() {
-    printf("Printing All Pending Queue");
-
-    // YOUR CODE HERE
-}
-
-// STACK
+// STACK -------------------------------
 void pushToDraftStack(TASK* newTask) {
     printf("Pushing Task to Draft Stack");
 
