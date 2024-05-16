@@ -9,3 +9,9 @@ docker run -i -t task_manager:latest
 ```
 
 The first command you should run only once.
+
+## or makefile
+
+```bash
+make
+```
