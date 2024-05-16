@@ -11,7 +11,11 @@ docker run -i -t task_manager:latest
 The first command you should run only once.
 
 ## or makefile
-
+first install build-essential (ubuntu/debian only)
+```bash
+sudo apt install build-essential
+```
+and run make
 ```bash
 make
 ```
