@@ -141,59 +141,64 @@ TASK* createTaskByScanf() {
 // 1
 void putToPendingQueue(TASK* newTask) {
     printf("\nPutting Task to Pending Queue\n");
-    TASK* swapGlobalQueue = GlobalQueue;
-    while (swapGlobalQueue->prox != NULL)
-      swapGlobalQueue = swapGlobalQueue->prox;
-    swapGlobalQueue->prox=newTask;
+    TASK* swap = GlobalQueue;
+    while (swap->prox != NULL)
+      swap = swap->prox;
+    swap->prox=newTask;
 }
 
 // 2
 void seeAllPendingQueue() {
     printf("\nPrinting All Pending Queue\n");
-    TASK* swapGlobalQueue = GlobalQueue;
-    while (swapGlobalQueue->prox != NULL) {
-      swapGlobalQueue = swapGlobalQueue->prox;
-      printf("id: %d description: %s\n", swapGlobalQueue->id, swapGlobalQueue->description);
+    TASK* swap = GlobalQueue;
+    while (swap->prox != NULL) {
+      swap = swap->prox;
+      printf("id: %d description: %s -> ", swap->id, swap->description);
     }
+    printf("NULL \n");
 }
 
 // 3
 TASK* getFromPendingQueue() {
     printf("\nGetting Task from Pending Queue\n");
-    TASK* swapGlobalQueue = GlobalQueue;
+    TASK* swap = GlobalQueue;
 
-    if (swapGlobalQueue->prox == NULL) {
+    if (swap->prox == NULL) {
       return NULL; // Return NULL if Queue is empty
     }
 
-    TASK* newTask = createTask(swapGlobalQueue->prox->id, swapGlobalQueue->prox->description);
-    TASK* swapProx = swapGlobalQueue->prox->prox;
-    swapGlobalQueue->prox = swapProx;
-
-    return newTask;
+    TASK* returnSwap = swap->prox;
+    swap->prox = swap->prox->prox;
+    returnSwap->prox = NULL;
+    return returnSwap;
 }
-// -------------------------------------------
 
 // LIST -----------------------------------
+//
 // 4
 void seeAllCompletedList() {
     printf("\nPrinting All Completed List\n");
-    TASK* swapGlobalList = GlobalList;
-    while (swapGlobalList->prox != NULL) {
-      swapGlobalList = swapGlobalList->prox;
-      printf("id: %d description: %s\n", swapGlobalList->id, swapGlobalList->description);
+    TASK* swap = GlobalList;
+    while (swap->prox != NULL) {
+      swap = swap->prox;
+      printf("id: %d description: %s -> ", swap->id, swap->description);
     }
+    printf("NULL \n");
 }
 
 // 5
 TASK* removeFromCompletedListByItsId(int id) {
     printf("\nRemoving Task from Completed List\n");
-    TASK* swapGlobalList = GlobalList;
-    while (swapGlobalList->prox != NULL) {
-      if (swapGlobalList->id == id) {
-        return swapGlobalList;
+    TASK* swap = GlobalList;
+    while (swap->prox != NULL) {
+      if (swap->prox->id == id) {
+        printf("%d", swap->prox->id);
+        TASK* returnSwap = swap->prox;
+        swap->prox = swap->prox->prox;
+        returnSwap->prox = NULL;
+        return returnSwap;
       }
-      swapGlobalList = swapGlobalList->prox;
+      swap = swap->prox;
     }
     return NULL; // Return NULL if ID not exist
 }
@@ -201,33 +206,50 @@ TASK* removeFromCompletedListByItsId(int id) {
 // 3
 void addToCompletedList(TASK* newTask) {
     printf("\nAdding Task to Completed List\n");
-    TASK* swapGlobalList = GlobalList;
-    while (swapGlobalList->prox != NULL) {
-      swapGlobalList = swapGlobalList->prox;
+    TASK* swap = GlobalList;
+    while (swap->prox != NULL) {
+      swap = swap->prox;
     }
-    swapGlobalList->prox = newTask;
+    swap->prox = newTask;
 }
 
 // STACK -----------------------------------
-// 6
-void seeAllDraftStack() {
-    printf("\nPrinting All Draft Stack\n");
-
-    // YOUR CODE HERE
-}
-
 // 5
 void pushToDraftStack(TASK* newTask) {
     printf("\nPushing Task to Draft Stack\n");
-    TASK* swapGlobalStack = GlobalStack;
+    TASK* swap = GlobalStack;
+    while (swap->prox != NULL) {
+      swap = swap->prox;
+    }
+    swap->prox = newTask;
 }
+
+// 6
+void seeAllDraftStack() {
+    printf("\nPrinting All Draft Stack\n");
+    TASK* swap = GlobalStack;
+    while (swap->prox != NULL) {
+      swap = swap->prox;
+      printf("id: %d description: %s -> ", swap->id, swap->description);
+    }
+    printf("NULL \n");
+}
+
 
 // 7
 TASK* popFromDraftStack() {
     printf("\nPopping Task to Draft Stack\n");
+    if(GlobalStack->prox == NULL)
+      return NULL; // Return NULL if Stack is empty
+              
+    TASK* swap = GlobalStack;
+    while (swap->prox->prox != NULL) {
+      swap = swap->prox;
+    }
 
-    // YOUR CODE HERE
-    return NULL; // Return NULL if Stack is empty
+    TASK* returnSwap = swap->prox->prox;
+    swap->prox->prox = NULL;
+    return returnSwap;
 }
 
 
