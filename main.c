@@ -93,7 +93,7 @@ int main() {
             case 7:
                 // SET LAST DRAFT AS PENDING TASK
                 TASK* lastTask = popFromDraftStack();
-                if(task != NULL) {
+                if(lastTask != NULL) {
                     putToPendingQueue(task);
                 }
                 break;
@@ -148,8 +148,9 @@ void putToPendingQueue(TASK* newTask) {
 }
 
 // 2
+// TODO quando recebe uma task da stack, entra em loop pois não acha o prox NULL
 void seeAllPendingQueue() {
-    printf("\nPrinting All Pending Queue\n");
+    printf("\nPrinting All Pending Queue\nHEAD -> ");
     TASK* swap = GlobalQueue;
     while (swap->prox != NULL) {
       swap = swap->prox;
@@ -177,7 +178,7 @@ TASK* getFromPendingQueue() {
 //
 // 4
 void seeAllCompletedList() {
-    printf("\nPrinting All Completed List\n");
+    printf("\nPrinting All Completed List\nHEAD -> ");
     TASK* swap = GlobalList;
     while (swap->prox != NULL) {
       swap = swap->prox;
@@ -226,7 +227,7 @@ void pushToDraftStack(TASK* newTask) {
 
 // 6
 void seeAllDraftStack() {
-    printf("\nPrinting All Draft Stack\n");
+    printf("\nPrinting All Draft Stack\nHEAD -> ");
     TASK* swap = GlobalStack;
     while (swap->prox != NULL) {
       swap = swap->prox;
@@ -235,8 +236,8 @@ void seeAllDraftStack() {
     printf("NULL \n");
 }
 
-
 // 7
+// TODO não esta removendo da var globalstack
 TASK* popFromDraftStack() {
     printf("\nPopping Task to Draft Stack\n");
     if(GlobalStack->prox == NULL)
@@ -246,12 +247,12 @@ TASK* popFromDraftStack() {
     while (swap->prox->prox != NULL) {
       swap = swap->prox;
     }
+    printf("%d", swap->prox->id);
 
-    TASK* returnSwap = swap->prox->prox;
-    swap->prox->prox = NULL;
+    TASK* returnSwap = swap->prox;
+    swap->prox = NULL;
     return returnSwap;
 }
-
 
 // MENU
 void displayMenu() {
