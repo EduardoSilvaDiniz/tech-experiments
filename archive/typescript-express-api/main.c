@@ -14,32 +14,29 @@ typedef struct Task {
 TASK* createTask(int id, char* description);
 TASK* createTaskByScanf();
 
-// LIST
-void addToCompletedList(TASK* newTask);
-TASK* removeFromCompletedListByItsId(int id);
-void seeAllCompletedList();
-
 // QUEUE
-void putToPendingQueue(TASK* newTask);
-TASK* getFromPendingQueue();
-void seeAllPendingQueue();
+void putToPendingQueue(TASK* newTask, TASK* GlobalQueue);
+TASK* getFromPendingQueue(TASK* GlobalQueue);
+void seeAllPendingQueue(TASK* GlobalQueue);
+
+// LIST
+void addToCompletedList(TASK* newTask,TASK* GlobalList);
+TASK* removeFromCompletedListByItsId(int id,TASK* GlobalList);
+void seeAllCompletedList(TASK* GlobalList);
 
 // STACK
-void pushToDraftStack(TASK* newTask);
-TASK* popFromDraftStack();
-void seeAllDraftStack();
+void pushToDraftStack(TASK* newTask, TASK* GlobalStack);
+TASK* popFromDraftStack(TASK* GlobalStack);
+void seeAllDraftStack(TASK* GlobalStack);
 
 // MENU
 void displayMenu();
 
-TASK* GlobalQueue;
-TASK* GlobalList;
-TASK* GlobalStack;
 int main() {
     int choice;
-    GlobalQueue = malloc(sizeof(TASK));
-    GlobalList  = malloc(sizeof(TASK));
-    GlobalStack = malloc(sizeof(TASK));
+    TASK* GlobalQueue = malloc(sizeof(TASK));
+    TASK* GlobalList  = malloc(sizeof(TASK));
+    TASK* GlobalStack = malloc(sizeof(TASK));
 
     printf("################# TASK MANAGER SYSTEM #################");
 
@@ -52,25 +49,25 @@ int main() {
             case 1:
                 // CREATE A TASK, THEN ADD TO PENDING QUEUE
                 TASK* newTask = createTaskByScanf();
-                putToPendingQueue(newTask);
+                putToPendingQueue(newTask, GlobalQueue);
                 break;
 
             case 2:
                 // SEE ALL TASKS FROM PENDING QUEUE
-                seeAllPendingQueue();
+                seeAllPendingQueue(GlobalQueue);
                 break;
 
             case 3:
                 // COMPLETE FIRST PENDING TASK
-                TASK* firstTask = getFromPendingQueue();
+                TASK* firstTask = getFromPendingQueue(GlobalQueue);
                 if(firstTask != NULL) {
-                    addToCompletedList(firstTask);
+                    addToCompletedList(firstTask,GlobalList);
                 }
                 break;
 
             case 4:
                 // SEE ALL TASKS FROM COMPLETED LIST
-                seeAllCompletedList();
+                seeAllCompletedList(GlobalList);
                 break;
 
             case 5:
@@ -79,22 +76,22 @@ int main() {
                 printf("Enter Task ID (number): ");
                 scanf("%d", &id);
 
-                TASK* task = removeFromCompletedListByItsId(id);
+                TASK* task = removeFromCompletedListByItsId(id, GlobalList);
                 if(task != NULL) {
-                    pushToDraftStack(task);
+                    pushToDraftStack(task, GlobalStack);
                 }
                 break;
 
             case 6:
                 // SEE ALL TASKS FROM DRAFT STACK
-                seeAllDraftStack();
+                seeAllDraftStack(GlobalStack);
                 break;
 
             case 7:
                 // SET LAST DRAFT AS PENDING TASK
-                TASK* lastTask = popFromDraftStack();
+                TASK* lastTask = popFromDraftStack(GlobalStack);
                 if(lastTask != NULL) {
-                    putToPendingQueue(task);
+                    putToPendingQueue(task, GlobalQueue);
                 }
                 break;
 
@@ -139,7 +136,7 @@ TASK* createTaskByScanf() {
 
 // QUEUE ----------------------------------
 // 1
-void putToPendingQueue(TASK* newTask) {
+void putToPendingQueue(TASK* newTask, TASK* GlobalQueue) {
     printf("\nPutting Task to Pending Queue\n");
     TASK* swap = GlobalQueue;
     while (swap->prox != NULL)
@@ -149,7 +146,7 @@ void putToPendingQueue(TASK* newTask) {
 
 // 2
 // TODO quando recebe uma task da stack, entra em loop pois não acha o prox NULL
-void seeAllPendingQueue() {
+void seeAllPendingQueue(TASK* GlobalQueue) {
     printf("\nPrinting All Pending Queue\nHEAD -> ");
     TASK* swap = GlobalQueue;
     while (swap->prox != NULL) {
@@ -160,7 +157,7 @@ void seeAllPendingQueue() {
 }
 
 // 3
-TASK* getFromPendingQueue() {
+TASK* getFromPendingQueue(TASK* GlobalQueue) {
     printf("\nGetting Task from Pending Queue\n");
     TASK* swap = GlobalQueue;
 
@@ -177,7 +174,7 @@ TASK* getFromPendingQueue() {
 // LIST -----------------------------------
 //
 // 4
-void seeAllCompletedList() {
+void seeAllCompletedList(TASK* GlobalList) {
     printf("\nPrinting All Completed List\nHEAD -> ");
     TASK* swap = GlobalList;
     while (swap->prox != NULL) {
@@ -188,7 +185,7 @@ void seeAllCompletedList() {
 }
 
 // 5
-TASK* removeFromCompletedListByItsId(int id) {
+TASK* removeFromCompletedListByItsId(int id,TASK* GlobalList) {
     printf("\nRemoving Task from Completed List\n");
     TASK* swap = GlobalList;
     while (swap->prox != NULL) {
@@ -205,7 +202,7 @@ TASK* removeFromCompletedListByItsId(int id) {
 }
 
 // 3
-void addToCompletedList(TASK* newTask) {
+void addToCompletedList(TASK* newTask,TASK* GlobalList) {
     printf("\nAdding Task to Completed List\n");
     TASK* swap = GlobalList;
     while (swap->prox != NULL) {
@@ -216,7 +213,8 @@ void addToCompletedList(TASK* newTask) {
 
 // STACK -----------------------------------
 // 5
-void pushToDraftStack(TASK* newTask) {
+void pushToDraftStack(TASK* newTask,TASK* GlobalStack) {
+
     printf("\nPushing Task to Draft Stack\n");
     TASK* swap = GlobalStack;
     while (swap->prox != NULL) {
@@ -226,7 +224,7 @@ void pushToDraftStack(TASK* newTask) {
 }
 
 // 6
-void seeAllDraftStack() {
+void seeAllDraftStack(TASK* GlobalStack) {
     printf("\nPrinting All Draft Stack\nHEAD -> ");
     TASK* swap = GlobalStack;
     while (swap->prox != NULL) {
@@ -238,7 +236,7 @@ void seeAllDraftStack() {
 
 // 7
 // TODO não esta removendo da var globalstack
-TASK* popFromDraftStack() {
+TASK* popFromDraftStack(TASK* GlobalStack) {
     printf("\nPopping Task to Draft Stack\n");
     if(GlobalStack->prox == NULL)
       return NULL; // Return NULL if Stack is empty
