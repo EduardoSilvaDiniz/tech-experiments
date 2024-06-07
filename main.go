@@ -1,93 +1,107 @@
 package main
 
-import f "fmt"
+import (
+	f "fmt"
+	"os"
+	"os/exec"
+	"runtime"
+)
 
 type task struct {
 	value int
+	id    int
 	next  *task
 }
 
+var cleanTUI map[string]func()
+
 func main() {
-	FifoHead := &task{}
-	ListHead := &task{}
+	queueHead := &task{}
+	listHead := &task{}
 	stackHead := &task{}
 	var choise int
 
 	for {
+		CallClear()
 		displayMenu()
 
 		f.Printf("choose an option: ")
 		f.Scan(&choise)
+
+		if choise == 0 {
+			f.Printf("Exiting program\n")
+			break
+		}
+
 		switch choise {
 		case 1:
 			// CREATE A TASK, THEN ADD TO PENDING QUEUE
 			newTask := createTask()
-			addTask(FifoHead, newTask)
+			addTask(queueHead, newTask)
 
 		case 2:
 			// SEE ALL TASKS FROM PENDING QUEUE
-			ShowTasks(FifoHead)
+			ShowTasks(queueHead)
 
 		case 3:
 			// COMPLETE FIRST PENDING TASK
-			firstTask := getFirstTask(FifoHead)
+			firstTask := getFirstTask(queueHead)
 			if firstTask != nil {
-				addToCompletedList(firstTask, ListHead)
+				addToCompletedList(listHead, firstTask)
 			}
 
-			// case 4:
-			//   // SEE ALL TASKS FROM COMPLETED LIST
-			//   seeAllCompletedList();
-			//   break;
-			//
-			// case 5:
-			//   // SET COMPLETED TASK TO DRAFT
-			//   var id int
-			//
-			//   f.Printf("Enter Task ID (number): ");
-			//   scanf("%d", &id);
-			//
-			//   task := removeFromCompletedListByItsId(id);
-			//   if(task != NULL) {
-			//     pushToDraftStack(task);
-			//   }
-			//   break;
-			//
-			// case 6:
-			//   // SEE ALL TASKS FROM DRAFT STACK
-			//   seeAllDraftStack();
-			//   break;
-			//
-			// case 7:
-			//   // SET LAST DRAFT AS PENDING TASK
-			//   lastTask := popFromDraftStack();
-			//   if(lastTask != NULL) {
-			//     putToPendingQueue(task);
-			//   }
-			//   break;
-			//
-			// case 0:
-			//   f.Printf("Exiting program\n");
-			//   break;
-			//
-			// default:
-			//   f.Printf("Invalid choice\n");
-			//   break;
+		case 4:
+			// SEE ALL TASKS FROM COMPLETED LIST
+			seeAllCompletedList(listHead)
+
+		case 5:
+			// SET COMPLETED TASK TO DRAFT
+			var id int
+
+			f.Printf("Enter Task ID (number): ")
+			f.Scan(&id)
+
+			task := removeFromCompletedListByItsId(listHead, id)
+			if task != nil {
+				pushToDraftStack(stackHead, task)
+			}
+
+		case 6:
+			// SEE ALL TASKS FROM DRAFT STACK
+			seeAllDraftStack(stackHead)
+
+		case 7:
+			// SET LAST DRAFT AS PENDING TASK
+			lastTask := popFromDraftStack(stackHead)
+			if lastTask != nil {
+				putToPendingQueue(queueHead, lastTask)
+			}
+
+		default:
+			f.Printf("Invalid choice\n")
 		}
 	}
 }
 
 func createTask() *task {
-
 	var value int
+	var id int
+
+	f.Printf("digite o valor: ")
 	f.Scan(&value)
 
-	newTask := &task{value: value}
+	f.Printf("digite o id: ")
+	f.Scan(&id)
+
+	newTask := &task{value: value, id: id, next: nil}
 	return newTask
 }
 
-func addTask(FifoHead *task, newTask *task) {
-	curr := FifoHead
+func addTask(head *task, newTask *task) {
+	if head == nil {
+		return
+	}
+	curr := head
 
 	for curr.next != nil {
 		curr = curr.next
@@ -95,28 +109,157 @@ func addTask(FifoHead *task, newTask *task) {
 	curr.next = newTask
 }
 
-func ShowTasks(FifoHead *task) {
-	curr := FifoHead.next
+func ShowTasks(head *task) {
+	curr := head.next
+	var input string
 
+	f.Printf("\n")
 	for curr != nil {
-		f.Printf("curr.value: %v\n", curr.value)
+		f.Printf("value: %v id: %v -> ", curr.value, curr.id)
 		curr = curr.next
 	}
+	f.Printf("Nil \n")
+
+	f.Print("aperte enter para continuar")
+	f.Scan(&input)
 }
 
 func getFirstTask(head *task) *task {
-	if head == nil || head.next == nil {
+	if head.next == nil {
 		return nil
 	} else {
-		return head.next
+		curr := head.next
+		head.next = curr.next
+		curr.next = nil
+		return curr
 	}
 }
 
-func addToCompletedList(firstTask *task, head *task) {
+func addToCompletedList(head *task, firstTask *task) {
 	if head == nil {
-		f.Printf("head is nil")
+		return
 	} else {
-		head.next = firstTask
+		curr := head
+		for curr.next != nil {
+			curr = curr.next
+		}
+		curr.next = firstTask
+	}
+}
+
+func seeAllCompletedList(head *task) {
+	curr := head.next
+	var input string
+
+	f.Printf("\n")
+	for curr != nil {
+		f.Printf("value: %v id: %v -> ", curr.value, curr.id)
+		curr = curr.next
+	}
+	f.Printf("Nil \n")
+
+	f.Print("aperte enter para continuar")
+	f.Scan(&input)
+}
+
+func removeFromCompletedListByItsId(head *task, id int) *task {
+	if head == nil {
+		return nil
+	}
+
+	curr := head.next
+
+	for curr.next != nil {
+		if curr.next.id == id {
+			swapTask := curr.next
+			curr.next = swapTask.next
+			swapTask.next = nil
+			return swapTask
+		}
+
+		curr = curr.next
+	}
+	return nil
+}
+
+func pushToDraftStack(head *task, task *task) {
+	if head == nil {
+		return
+	}
+	curr := head
+
+	for curr.next != nil {
+		curr = curr.next
+	}
+	curr.next = task
+}
+
+func seeAllDraftStack(head *task) {
+	curr := head.next
+	var input string
+
+	f.Printf("\n")
+	for curr != nil {
+		f.Printf("value: %v id: %v -> ", curr.value, curr.id)
+		curr = curr.next
+	}
+	f.Printf("Nil \n")
+
+	f.Print("aperte enter para continuar")
+	f.Scan(&input)
+
+}
+
+func popFromDraftStack(head *task) *task {
+	if head == nil {
+		return nil
+	}
+
+	curr := head.next
+
+	for curr.next.next != nil {
+		curr = curr.next
+	}
+	swapTask := curr.next
+	curr.next = nil
+
+	return swapTask
+}
+
+func putToPendingQueue(head *task, task *task) {
+	if head == nil {
+		return
+	}
+
+	curr := head.next
+
+	for curr.next != nil {
+		curr = curr.next
+	}
+
+	curr.next = task
+}
+
+func init() {
+	cleanTUI = make(map[string]func())
+	cleanTUI["linux"] = func() {
+		cmd := exec.Command("clear")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	}
+	cleanTUI["windows"] = func() {
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	}
+}
+
+func CallClear() {
+	value, ok := cleanTUI[runtime.GOOS]
+	if ok {
+		value()
+	} else {
+		panic("your platform is unsuppoted!")
 	}
 }
 
