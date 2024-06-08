@@ -5,8 +5,13 @@ public class Menu {
     System.out.println (
       "\nMenu da Faculdade\n" +
       "1. adicionar aluno ao curso\n" +
-      "2. mostrar alunos que estao matriculados no curso\n" +
+      "2. mostrar lista de alunos matriculados no curso\n" +
       "3. remover aluno do curso\n" +
+      "4. mostrar professor responsavel do curso\n" +
+      "5. alterar professor responsavel do curso\n" +
+      "6. adicionar funcionario\n" +
+      "7. visualizar funcionarios\n" +
+      "8. remover funcionario\n" +
       "0. sair do programar\n" +
       "digite uma opção: "
     );

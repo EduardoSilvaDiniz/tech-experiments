@@ -40,4 +40,11 @@ public class Curso extends MatriculaInvalidaException {
   public String exibirDadosProfessor(){
     return this.professorResponsavel.exibirDados();
   }
+  public boolean pesquisarMatricula(String matricula){
+    return mapAlunos.containsKey(matricula);
+  }
+
+  public void setProfessorResponsavel(Professor professorResponsavel) {
+    this.professorResponsavel = professorResponsavel;
+  }
 }
