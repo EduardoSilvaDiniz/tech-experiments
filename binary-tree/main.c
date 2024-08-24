@@ -13,6 +13,7 @@ void searchFreeSpaceAndAddNode(node_t *node, node_t *head);
 void showAllTrees(node_t *head);
 
 int main() {
+
   node_t *seedTree = createNode(10);
   searchFreeSpaceAndAddNode(createNode(9), seedTree);
   searchFreeSpaceAndAddNode(createNode(11), seedTree);
