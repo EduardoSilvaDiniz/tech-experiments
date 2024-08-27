@@ -1,93 +1,99 @@
 #include "binary-tree.h"
-#include "inttypes.h"
-#include "sys/types.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node {
-  int value;
-  struct node *right;
-  struct node *left;
-} Node;
-
-Node *createNode(int value) {
-  struct node *newNode = malloc(sizeof(struct node));
+Node *createNode(int data) {
+  Node *newNode = malloc(sizeof(Node));
   if (newNode == NULL)
     return NULL;
-  newNode->value = value;
+  newNode->data = data;
   newNode->right = NULL;
   newNode->left = NULL;
 
   return newNode;
 }
 
-void searchFreeSpaceAndAddNode(Node *node, Node *head) {
-  if (node == NULL || head == NULL)
+void add(int data, Node *curr) {
+  if (data <= 0 || curr == NULL)
     return;
 
-  if (node->value > head->value) {
-    if (head->right == NULL) {
-      head->right = node;
+  if (data > curr->data) {
+    if (curr->right == NULL) {
+      curr->right = createNode(data);
       return;
     }
 
-    searchFreeSpaceAndAddNode(node, head->right);
-  } else if (node->value < head->value) {
-    if (head->left == NULL) {
-      head->left = node;
+    add(data, curr->right);
+  } else if (data < curr->data) {
+    if (curr->left == NULL) {
+      curr->left = createNode(data);
       return;
     }
 
-    searchFreeSpaceAndAddNode(node, head->left);
+    add(data, curr->left);
   }
 }
 
-void showAllTrees(Node *head) {
-  if (head == NULL)
+void forEach(Node *curr) {
+  if (curr == NULL)
     return;
 
-  showAllTrees(head->left);
-  printf("%d ", head->value);
-  showAllTrees(head->right);
+  forEach(curr->left);
+  printf("%d ", curr->data);
+  forEach(curr->right);
 }
-Node *searchNodeOnTree(Node *node, int value) {
-  if (node == NULL)
-    return NULL;
-  else if (node->value == value) {
-    printf("valor encontrando %d\n", node->value);
-    return node;
-  }
+void get(int data, Node *curr) {
+  if (curr == NULL)
+    return;
+  else if (curr->data == data)
+    printf("valor encontrando %d\n", curr->data);
 
-  searchNodeOnTree(node->left, value);
-  searchNodeOnTree(node->right, value);
+  get(data, curr->right);
+  get(data, curr->left);
+  return;
 }
 
-void removeNodeOnTree(Node *tree, int value) {
-  Node *NodeToBeRemoved = searchNodeOnTree(tree, value);
+void removeData(int data, Node *curr) {
+  Node *NodeToBeRemoved = createNode(10);
   if (NodeToBeRemoved->left != NULL) {
     printf("left contem algo\n");
-    NodeToBeRemoved->value = lastNodeExtremeRight(NodeToBeRemoved->left)->value;
+    NodeToBeRemoved->data = lastNodeExtremeRight(NodeToBeRemoved->left)->data;
   } else if (NodeToBeRemoved->right != NULL) {
     printf("right contem algo\n");
-    NodeToBeRemoved->value = lastNodeExtremeLeft(NodeToBeRemoved->right)->value;
+    NodeToBeRemoved->data = lastNodeExtremeLeft(NodeToBeRemoved->right)->data;
   } else {
     printf("achou nada\n");
-    NodeToBeRemoved->value = 0;
+    NodeToBeRemoved->data = 0;
   }
 }
 
-Node *lastNodeExtremeLeft(Node *node) {
-  if (node->left == NULL) {
-    printf("Extremo left contem :%d\n", node->value);
-    return node;
-  } else
-    lastNodeExtremeLeft(node->left);
+Node *lastNodeExtremeLeft(Node *curr) {
+  if (curr->left == NULL) {
+    printf("Extremo left contem :%d\n", curr->data);
+    return curr;
+  } else if (curr->left != NULL) {
+    lastNodeExtremeLeft(curr->left);
+  }
+  return NULL;
 }
 
-Node *lastNodeExtremeRight(Node *node) {
-  if (node->right == NULL) {
-    printf("Extremo right contem :%d\n", node->value);
-    return node;
-  } else
-    lastNodeExtremeRight(node->right);
+Node *lastNodeExtremeRight(Node *curr) {
+  if (curr->right == NULL) {
+    printf("Extremo right contem :%d\n", curr->data);
+    return curr;
+  } else if (curr->right != NULL)
+    lastNodeExtremeRight(curr->right);
+  return NULL;
+}
+
+BinaryTree *constructor(int data) {
+  BinaryTree *newTree = malloc(sizeof(BinaryTree));
+  if (newTree == NULL)
+    return NULL;
+  newTree->base = createNode(data);
+  newTree->add = &add;
+  newTree->removeData = &removeData;
+  newTree->forEach = &forEach;
+
+  return newTree;
 }
