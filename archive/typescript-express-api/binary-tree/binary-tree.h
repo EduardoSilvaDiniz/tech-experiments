@@ -4,7 +4,7 @@
 typedef struct binarytree {
   struct node *base;
   void (*add)(int data, struct node *curr);
-  void (*get)(int value, struct node *curr);
+  struct node *(*get)(int value, struct node *curr);
   void (*removeData)(int value, struct node *curr);
   void (*forEach)(struct node *curr);
 } BinaryTree;
