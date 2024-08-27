@@ -42,15 +42,15 @@ void forEach(Node *curr) {
   printf("%d ", curr->data);
   forEach(curr->right);
 }
-void get(int data, Node *curr) {
+Node *get(int data, Node *curr) {
   if (curr == NULL)
-    return;
-  else if (curr->data == data)
-    printf("valor encontrando %d\n", curr->data);
+    return NULL;
+  else if (curr->data == data) {
+    return curr;
+  }
 
-  get(data, curr->right);
   get(data, curr->left);
-  return;
+  get(data, curr->right);
 }
 
 void removeData(int data, Node *curr) {
@@ -91,6 +91,7 @@ BinaryTree *constructor(int data) {
   if (newTree == NULL)
     return NULL;
   newTree->base = createNode(data);
+  newTree->get = &get;
   newTree->add = &add;
   newTree->removeData = &removeData;
   newTree->forEach = &forEach;
