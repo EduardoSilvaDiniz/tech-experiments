@@ -3,9 +3,13 @@
 
 int main() {
   BinaryTree *tree = constructor(10);
-  tree->add(9, tree->base);
-  tree->add(11, tree->base);
-  tree->forEach(tree->base);
-  printf("%d\n", tree->get(11, tree->base)->data);
+  tree->insert(9, tree->root);
+  tree->insert(15, tree->root);
+  tree->insert(13, tree->root);
+  tree->insert(12, tree->root);
+  tree->insert(14, tree->root);
+
+  printf("%d\n", tree->delete (13, tree->root)->data);
+  tree->inorderTreeWalk(tree->root);
   return 0;
 }
