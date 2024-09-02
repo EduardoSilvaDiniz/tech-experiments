@@ -38,13 +38,13 @@ void insert(int data, Node *curr) {
   }
 }
 
-void inoderTreeWalk(Node *curr) {
+void inOrder(Node *curr) {
   if (curr == NULL)
     return;
 
-  inoderTreeWalk(curr->left);
+  inOrder(curr->left);
   printf("%d ", curr->data);
-  inoderTreeWalk(curr->right);
+  inOrder(curr->right);
 }
 Node *search(int data, Node *curr) {
   if (curr == NULL || data == curr->data)
@@ -86,13 +86,6 @@ Node *sucessor(Node *curr) {
   return y;
 }
 
-Node *maximum(Node *curr) {
-  if (curr->right == NULL)
-    return curr;
-
-  return maximum(curr->right);
-}
-
 Node *minimum(Node *curr) {
   if (curr->left == NULL)
     return curr;
@@ -100,17 +93,9 @@ Node *minimum(Node *curr) {
   return minimum(curr->left);
 }
 
-BinaryTree *constructor(int data) {
-  BinaryTree *newTree = malloc(sizeof(BinaryTree));
+Node *maximum(Node *curr) {
+  if (curr->right == NULL)
+    return curr;
 
-  if (newTree == NULL)
-    return NULL;
-
-  newTree->root = createNode(data);
-  newTree->search = &search;
-  newTree->insert = &insert;
-  newTree->delete = &delete;
-  newTree->inorderTreeWalk = &inoderTreeWalk;
-
-  return newTree;
+  return maximum(curr->right);
 }
