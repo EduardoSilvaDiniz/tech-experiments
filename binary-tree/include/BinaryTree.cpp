@@ -36,6 +36,7 @@ void BinaryTree::inorder(Node *curr) {
   std::cout << curr->data << " ";
   inorder(curr->right);
 }
+
 Node *BinaryTree::search(int data, Node *curr) {
   if (curr == NULL || data == curr->data)
     return curr;
