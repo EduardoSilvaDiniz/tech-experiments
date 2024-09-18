@@ -4,8 +4,11 @@ class Node {
 private:
 public:
   int data;
-  Node *right;
+  int rank;
   Node *left;
+  Node *right;
+  Node *parent;
+
   Node(int data); // constructor
 };
 #endif
