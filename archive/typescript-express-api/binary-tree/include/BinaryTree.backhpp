@@ -1,9 +1,8 @@
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
 
-#include "Node.hpp"
-
-class BinaryTree {
+#include "Tree.hpp"
+class BinaryTree : public Tree {
 private:
   Node *root;
 
