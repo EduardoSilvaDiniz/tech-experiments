@@ -1,44 +1,54 @@
 #include "BinaryTree.hpp"
 #include "Node.hpp"
-#include <cstddef>
 #include <cstdio>
 #include <iostream>
 #include <ostream>
 
-void BinaryTree::insert(int data, Node *curr) {
-  if (data < 0 || curr == NULL)
-    return;
-
-  if (data > curr->data) {
-    if (curr->right == NULL) {
-      curr->right = new Node(data);
-      curr->right->parent = curr;
-      return;
-    }
-
-    insert(data, curr->right);
-  } else if (data < curr->data) {
-    if (curr->left == NULL) {
-      curr->left = new Node(data);
-      curr->left->parent = curr;
-      return;
-    }
-
-    insert(data, curr->left);
+Node *BinaryTree::insert(int data, Node *curr) {
+  if (curr == nullptr) {
+    curr = new Node(data);
+    return curr;
   }
+
+  if (data < curr->data) {
+    curr->left = insert(data, curr->left);
+  }
+  if (data > curr->data) {
+    curr->right = insert(data, curr->right);
+  }
+  return curr;
 }
 
-void BinaryTree::inorder(Node *curr) {
-  if (curr == NULL)
-    return;
+int BinaryTree::inorder(Node *curr) {
+  if (curr == nullptr)
+    return 0;
 
   inorder(curr->left);
   std::cout << curr->data << " ";
   inorder(curr->right);
+  return 0;
+}
+int BinaryTree::preorder(Node *curr) {
+  if (curr == nullptr)
+    return 0;
+
+  std::cout << curr->data << " ";
+  preorder(curr->left);
+  preorder(curr->right);
+  return 0;
+}
+int BinaryTree::posorder(Node *curr) {
+  if (curr == nullptr)
+    return 0;
+
+  posorder(curr->left);
+  posorder(curr->right);
+  std::cout << curr->data << " ";
+  return 0;
 }
 
 Node *BinaryTree::search(int data, Node *curr) {
-  if (curr == NULL || data == curr->data)
+  if (curr == nullptr || data == curr->data)
     return curr;
 
   if (data < curr->data)
@@ -48,91 +58,58 @@ Node *BinaryTree::search(int data, Node *curr) {
     return search(data, curr->right);
 }
 
-Node *BinaryTree::deleteLeaf(int data, Node *curr) {
-  if (curr == NULL)
-    return curr;
-  else if (curr->data == data) {
-    if (curr->left == NULL && curr->right == NULL) {
-      delete curr;
-      return NULL;
-    }
-  } else {
-    if (data < curr->data)
-      curr->left = deleteLeaf(data, curr->left);
-    else
-      curr->right = deleteLeaf(data, curr->right);
-  }
+Node *BinaryTree::deleteNode(int data, Node *curr) {
+  if (curr == nullptr)
+    return nullptr;
 
+  else if (data < curr->data) {
+    curr->left = deleteNode(data, curr->left);
+
+  } else if (data > curr->data) {
+    curr->right = deleteNode(data, curr->right);
+
+  } else {
+    if (curr->left == nullptr && curr->right == nullptr) {
+      delete curr;
+      return nullptr;
+    }
+    if (curr->left == nullptr) {
+      Node *temp = curr->right;
+      delete curr;
+      return temp;
+
+    } else if (curr->right == nullptr) {
+      Node *temp = curr->left;
+      delete curr;
+      return temp;
+
+    } else {
+      Node *minimumNode = minimum(curr->right);
+      curr->data = minimumNode->data;
+      curr->right = deleteNode(minimumNode->data, curr->right);
+    }
+  }
   return curr;
 }
 
-void BinaryTree::deleteRootSubTree(int data, Node *root) {
-  Node *curr = search(data, root);
-  if (curr->left != NULL) {
-    if (curr->left->left == NULL) {
-      if (curr->left->right == NULL) {
-        if (curr->parent->left == curr) {
-          curr->parent->left = curr->left;
-          curr->left->right = curr->right;
-          curr->left->parent = curr->parent;
-          delete curr;
-        } else {
-          curr->parent->right = curr->left;
-          curr->left->right = curr->right;
-          curr->left->parent = curr->parent;
-          delete curr;
-        }
-      } else {
-        Node *sucessorNode = minimum(curr->left->right);
-        std::cout << sucessorNode->data << std::endl;
-        sucessorNode->parent->left = NULL;
-        sucessorNode->parent = curr->parent;
-        curr->parent->left = sucessorNode;
-        sucessorNode->left = curr->left;
-        sucessorNode->right = curr->right;
-        delete curr;
-      }
-    } else {
-      Node *sucessorNode = maximum(curr->left);
-      std::cout << sucessorNode->data << std::endl;
-      sucessorNode->parent->right = NULL;
-      sucessorNode->parent = curr->parent;
-      sucessorNode->left = curr->left;
-      sucessorNode->right = curr->right;
-    }
-  } else if (curr->right != NULL) {
-    if (curr->right->left == NULL && curr->right->left == NULL) {
-      if (curr->parent->left == curr) {
-        curr->parent->left = curr->right;
-        curr->right->left = curr->left;
-        curr->right->parent = curr->parent;
-      } else {
-        curr->parent->right = curr->right;
-        curr->right->left = curr->left;
-        curr->right->parent = curr->parent;
-      }
-    }
-  }
-}
-
 Node *BinaryTree::sucessor(Node *curr) {
-  if (curr->right != NULL)
+  if (curr->right != nullptr)
     return BinaryTree::minimum(curr->right);
-  else if (curr->left != NULL)
+  else if (curr->left != nullptr)
     return BinaryTree::maximum(curr->left);
   else
-    return NULL;
+    return nullptr;
 }
 
 Node *BinaryTree::minimum(Node *curr) {
-  if (curr->left == NULL)
+  if (curr->left == nullptr)
     return curr;
 
   return minimum(curr->left);
 }
 
 Node *BinaryTree::maximum(Node *curr) {
-  if (curr->right == NULL)
+  if (curr->right == nullptr)
     return curr;
 
   return maximum(curr->right);
