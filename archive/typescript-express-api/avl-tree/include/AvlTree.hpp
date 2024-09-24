@@ -2,6 +2,7 @@
 #define BINARY_TREE_H
 
 #include "Node.hpp"
+#include <cstdio>
 
 class AvlTree {
 private:
