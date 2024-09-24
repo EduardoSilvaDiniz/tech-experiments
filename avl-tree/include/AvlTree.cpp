@@ -20,8 +20,9 @@ Node *AvlTree::insert(int data, Node *curr) {
 }
 
 int AvlTree::inorder(Node *curr) {
-  if (curr == nullptr)
+  if (curr == nullptr) {
     return 0;
+}
 
   inorder(curr->left);
   std::cout << curr->data << " ";
@@ -29,8 +30,9 @@ int AvlTree::inorder(Node *curr) {
   return 0;
 }
 int AvlTree::preorder(Node *curr) {
-  if (curr == nullptr)
+  if (curr == nullptr) {
     return 0;
+}
 
   std::cout << curr->data << " ";
   preorder(curr->left);
@@ -93,24 +95,27 @@ Node *AvlTree::deleteNode(int data, Node *curr) {
 }
 
 Node *AvlTree::sucessor(Node *curr) {
-  if (curr->right != nullptr)
+  if (curr->right != nullptr) {
     return AvlTree::minimum(curr->right);
-  else if (curr->left != nullptr)
+  } else if (curr->left != nullptr) {
     return AvlTree::maximum(curr->left);
-  else
+  } else {
     return nullptr;
+  }
 }
 
 Node *AvlTree::minimum(Node *curr) {
-  if (curr->left == nullptr)
+  if (curr->left == nullptr) {
     return curr;
+  }
 
   return minimum(curr->left);
 }
 
 Node *AvlTree::maximum(Node *curr) {
-  if (curr->right == nullptr)
+  if (curr->right == nullptr) {
     return curr;
+}
 
   return maximum(curr->right);
 }

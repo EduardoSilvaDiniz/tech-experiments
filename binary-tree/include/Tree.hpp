@@ -11,13 +11,10 @@ private:
   int inorder(Node *curr);
   int preorder(Node *curr);
   int posorder(Node *curr);
+  void blabla();
 
 public:
-  Tree(int data) { this->root = new Node(data); };
-  Node *insert(int data) { this.root };
-  int inorder(Node *curr);
-  int preorder(Node *curr);
-  int posorder(Node *curr);
+protected:
 };
 
 #endif // !TREE_H
