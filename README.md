@@ -3,25 +3,24 @@
 - [APIs](#apis)
 - [Data Structure](#data-structure)
 - [Functions](#functions)
-- [Clean Code](#clean-code)
-
+- [Algorithm](#algorithm)
 
 
 ## APIs
 
-- [Api-restful-Tweats](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/api-rest) - Controlador de tweets em golang
+- [Api Restful Tweats](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/api-rest) - Tweet controller.
 
 ## Data Structure
 
-- [hashtable](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/hashtable) - hashtable em C.
-- [linkedlist](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/linkedlist) - linkedlist em C.
-- [binarytree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/binary-tree) - binary tree em C.
-
+- [Linked List](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/linkedlist) - needs refactoring of code
+- [Hash Table](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/hashtable) - needs refactoring of code
+- [Binary Tree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/binary-tree) - needs refactoring of code
+- [Avl Tree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/avl-tree) - needs refactoring of code
+- [Red Black Tree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/) - in progress...
 ## Functions
 
-- [Malloc](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/my-malloc.c) - malloc em C.
+- [Malloc](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/my-malloc.c) - malloc function demonstration
 
-## others
+## Algorithm
 
-- [Limpeza de nomes](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/names-functions) - melhorando o nome dos metodos e atributos em Java.
-
+- [Exponential Search](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/exponential-search)
