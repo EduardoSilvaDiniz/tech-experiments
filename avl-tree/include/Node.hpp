@@ -9,6 +9,6 @@ public:
   Node *right;
   Node *parent;
 
-  Node(int data); // constructor
+  Node(int data, int rank); // constructor
 };
 #endif

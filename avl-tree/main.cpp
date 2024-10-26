@@ -1,4 +1,5 @@
 #include "include/AvlTree.hpp"
+#include <algorithm>
 #include <iostream>
 
 int main() {
@@ -8,8 +9,7 @@ int main() {
   tree->insert(12);
   tree->insert(13);
   tree->insert(14);
-  tree->preorder();
-  std::cout << std::endl << tree->deleteNode(12) << std::endl;
-  tree->preorder();
+  tree->showRank();
+
   return 0;
 }
