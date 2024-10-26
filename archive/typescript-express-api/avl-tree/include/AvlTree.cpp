@@ -4,25 +4,37 @@
 #include <iostream>
 #include <ostream>
 
-Node *AvlTree::insert(int data, Node *curr) {
+Node *AvlTree::insert(int data, Node *curr, int rank) {
   if (curr == nullptr) {
-    curr = new Node(data);
+    curr = new Node(data, rank);
     return curr;
   }
 
   if (data < curr->data) {
-    curr->left = insert(data, curr->left);
+    curr->left = insert(data, curr->left, ++rank);
   }
   if (data > curr->data) {
-    curr->right = insert(data, curr->right);
+    curr->right = insert(data, curr->right, ++rank);
   }
   return curr;
+}
+
+int AvlTree::showRank(Node *curr) {
+  if (curr == nullptr) {
+    return 0;
+  }
+
+  showRank(curr->left);
+  std::cout << curr->data << ",";
+  std::cout << curr->rank << " ";
+  showRank(curr->right);
+  return 0;
 }
 
 int AvlTree::inorder(Node *curr) {
   if (curr == nullptr) {
     return 0;
-}
+  }
 
   inorder(curr->left);
   std::cout << curr->data << " ";
@@ -32,7 +44,7 @@ int AvlTree::inorder(Node *curr) {
 int AvlTree::preorder(Node *curr) {
   if (curr == nullptr) {
     return 0;
-}
+  }
 
   std::cout << curr->data << " ";
   preorder(curr->left);
@@ -115,7 +127,7 @@ Node *AvlTree::minimum(Node *curr) {
 Node *AvlTree::maximum(Node *curr) {
   if (curr->right == nullptr) {
     return curr;
-}
+  }
 
   return maximum(curr->right);
 }
