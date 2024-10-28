@@ -1,27 +1,17 @@
 ## Contents
-
+- [Algorithm](#algorithm)
+   - [Search](#search)
+- [Data Structures](#data-structures)
 - [APIs](#apis)
-- [Data Structure](#data-structure)
-- [Functions](#functions)
-- [Clean Code](#clean-code)
-
-
-
+## Algorithm
+- [Malloc](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/my-malloc.c) - malloc step by step.
+### Search
+- [Exponential Search](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/exponential-search)
+## Data Structures
+- [Linked List](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/linkedlist) - (needs refactoring).
+- [Hash Table](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/hashtable) - (needs refactoring).
+- [Binary Tree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/binary-tree) - (needs refactoring).
+- [Avl Tree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/binary-tree) - (needs refactoring).
+- [Red Black Tree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/binary-tree) - (needs refactoring).
 ## APIs
-
-- [Api-restful-Tweats](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/api-rest) - Controlador de tweets em golang
-
-## Data Structure
-
-- [hashtable](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/hashtable) - hashtable em C.
-- [linkedlist](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/linkedlist) - linkedlist em C.
-- [binarytree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/binary-tree) - binary tree em C.
-
-## Functions
-
-- [Malloc](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/my-malloc.c) - malloc em C.
-
-## others
-
-- [Limpeza de nomes](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/names-functions) - melhorando o nome dos metodos e atributos em Java.
-
+- [Restful Tweats](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/api-rest) - Tweet controller (needs refactoring).
