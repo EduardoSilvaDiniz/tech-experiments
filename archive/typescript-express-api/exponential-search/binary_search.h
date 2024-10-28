@@ -1,4 +1,4 @@
 #ifndef BINARY_SEARCH_H
 #define BINARY_SEARCH_H
-int binarySearch(int list[], int low, int high, int value);
+int binarySearch(int list[], int value, int low, int high);
 #endif

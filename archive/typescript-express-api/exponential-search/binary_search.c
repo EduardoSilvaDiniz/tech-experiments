@@ -1,6 +1,6 @@
 #include "main.h"
 
-int binarySearch(int list[], int low, int high, int value) {
+int binarySearch(int list[], int value, int low, int high) {
   while (low <= high) {
     int mid = low + (high - low) / 2;
 

@@ -35,16 +35,17 @@ void showList(int list[]) {
     printf("%d ", list[i]);
 }
 
-int exponentialSearch(int list[], int size, int value) {
-  if (size <= 0) {
+int exponentialSearch(int list[], int listSize, int key) {
+  if (listSize <= 0) {
     return NOT_LIST;
   }
 
-  int bound = 1;
-  while (bound < size && list[bound] < value)
-    bound *= 2;
+  int exponentialValue = 1;
+  while (exponentialValue < listSize && list[exponentialValue] < key)
+    exponentialValue *= 2;
 
-  return binarySearch(list, bound / 2, min(bound, size), value);
+  return binarySearch(list, key, min(exponentialValue, listSize),
+                      exponentialValue / 2);
 }
 
 int min(int arg1, int arg2) { return arg1 > arg2 ? arg1 : arg2; }
