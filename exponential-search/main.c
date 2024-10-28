@@ -44,8 +44,8 @@ int exponentialSearch(int list[], int listSize, int key) {
   while (exponentialValue < listSize && list[exponentialValue] < key)
     exponentialValue *= 2;
 
-  return binarySearch(list, key, min(exponentialValue, listSize),
-                      exponentialValue / 2);
+  return binarySearch(list, key, exponentialValue / 2,
+                      min(exponentialValue, listSize));
 }
 
 int min(int arg1, int arg2) { return arg1 > arg2 ? arg1 : arg2; }
