@@ -86,8 +86,9 @@ public class SetupTeardownIncluder {
   }
 
   private String getPathNameForPage(WikiPage page) throws Exception {
-    WikiPagePath pagePath = pageCrawler.getFullPath(page);
-    return PathParser.render(pagePath);
+    //WikiPagePath pagePath = pageCrawler.getFullPath(page);
+    //return PathParser.render(pagePath);
+    return "";
   }
   private void buildIncludeDirective(String pagePathName, String arg) throws Exception {
     newPageContent
