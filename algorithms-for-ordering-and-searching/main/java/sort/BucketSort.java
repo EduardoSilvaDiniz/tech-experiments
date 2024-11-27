@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BucketSort {
-  private static void insertionSort(List<Float> arr) {
+  //TODO erro com os tipos de dados e indexexception
+  private static void insertionSort(List<Integer> arr) {
     for (int i = 1; i < arr.size(); i++) {
-      float key = arr.get(i);
+      int key = arr.get(i);
       int j = i - 1;
       while (j >= 0 && arr.get(j) > key) {
         arr.set(j + 1, arr.get(j));
@@ -16,14 +17,14 @@ public class BucketSort {
     }
   }
 
-  public static void bucketSort(float[] arr) {
-    int n = arr.length;
-    List<Float>[] buckets = new ArrayList[n];
+  public static void bucketSort(int[] arr) {
+    int n = arr.length-2;
+    List<Integer>[] buckets = new ArrayList[n];
 
     for (int i = 0; i < n; i++)
       buckets[i] = new ArrayList<>();
 
-    for (float v : arr) {
+    for (int v : arr) {
       int bi = (int) (n * v);
       buckets[bi].add(v);
     }
