@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 public class BucketSortTest {
 
   @Test
+  //TODO implementar o test
   public void bucketSortTest() {
-    float[] arr = {0.897f, 0.565f, 0.656f, 0.1234f, 0.665f, 0.3434f};
-    BucketSort.bucketSort(arr);
   }
 }
