@@ -1,11 +1,6 @@
 package main.java.search;
 
-import org.junit.jupiter.api.Assertions;
-
-import java.util.Scanner;
-
 public class InterpolationSearch {
-
   public static int interpolationSearch(int[] list, int value, int low, int high) {
     if (low <= high && value >= list[low] && value <= list[high]) {
       int mid = low + ((value - list[low]) * (high - low) / (list[high] - list[low]));
@@ -18,5 +13,4 @@ public class InterpolationSearch {
     }
     throw new IllegalArgumentException("value not found");
   }
-
 }
