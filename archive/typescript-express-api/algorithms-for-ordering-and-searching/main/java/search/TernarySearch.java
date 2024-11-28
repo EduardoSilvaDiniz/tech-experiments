@@ -12,14 +12,12 @@ public class TernarySearch {
       if (list[secondMid] == value)
         return secondMid;
 
-
       if (value < list[mid])
         return ternarySearch(list, left, mid - 1, value);
       else if (value > list[secondMid])
         return ternarySearch(list, secondMid + 1, right, value);
       else
         return ternarySearch(list, mid + 1, secondMid - 1, value);
-
     }
     throw new IllegalArgumentException("value not found");
   }

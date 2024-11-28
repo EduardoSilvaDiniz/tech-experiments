@@ -1,41 +1,60 @@
 package main.java.sort;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 
-public class BucketSort {
-  //TODO erro com os tipos de dados e indexexception
-  private static void insertionSort(List<Integer> arr) {
-    for (int i = 1; i < arr.size(); i++) {
-      int key = arr.get(i);
-      int j = i - 1;
-      while (j >= 0 && arr.get(j) > key) {
-        arr.set(j + 1, arr.get(j));
-        j--;
-      }
-      arr.set(j + 1, key);
-    }
+public class BucketSort implements Sorter<Integer> {
+  private final Comparator<Integer> comparator;
+
+  public BucketSort(Comparator<Integer> comparator) {
+    this.comparator = comparator;
   }
 
-  public static void bucketSort(int[] arr) {
-    int n = arr.length-2;
-    List<Integer>[] buckets = new ArrayList[n];
+  public BucketSort() {
+    comparator = Comparator.naturalOrder();
+  }
 
-    for (int i = 0; i < n; i++)
-      buckets[i] = new ArrayList<>();
+  @Override
+  public List<Integer> sort(List<Integer> arrayToSort) {
+    List<List<Integer>> buckets = splitIntoUnsortedBuckets(arrayToSort);
 
-    for (int v : arr) {
-      int bi = (int) (n * v);
-      buckets[bi].add(v);
-    }
+    for (List<Integer> bucket : buckets)
+      bucket.sort(comparator);
 
-    for (int i = 0; i < n; i++)
-      insertionSort(buckets[i]);
+    return concatenateSortedBuckets(buckets);
+  }
 
-    int index = 0;
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < buckets[i].size(); j++)
-        arr[index++] = buckets[i].get(j);
-    }
+  private List<Integer> concatenateSortedBuckets(List<List<Integer>> buckets) {
+    List<Integer> sortedArray = new LinkedList<>();
+    for (List<Integer> bucket : buckets)
+      sortedArray.addAll(bucket);
+
+    return sortedArray;
+  }
+
+  private List<List<Integer>> splitIntoUnsortedBuckets(List<Integer> initialList) {
+    final int max = findMax(initialList);
+    final int numberOfbuckets = (int) Math.sqrt(initialList.size());
+
+    List<List<Integer>> buckets = new ArrayList<>();
+    for (int i = 0; i < numberOfbuckets; i++) buckets.add(new ArrayList<>());
+
+    for (int i : initialList)
+      buckets.get(hash(i, max, numberOfbuckets)).add(i);
+
+    return buckets;
+  }
+
+  private int findMax(List<Integer> input) {
+    int m = Integer.MIN_VALUE;
+    for (int i : input)
+      m = Math.max(i, m);
+    return m;
+  }
+
+  private static int hash(int i, int max, int numberOfBuckets) {
+    return (int) ((double) i / max * (numberOfBuckets - 1));
   }
 }

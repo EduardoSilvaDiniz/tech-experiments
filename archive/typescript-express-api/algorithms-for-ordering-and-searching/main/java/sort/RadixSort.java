@@ -73,24 +73,4 @@ public class RadixSort {
       countingSortDesc(array, place);
     }
   }
-
-  public static void main(String[] args) {
-    int[] data = {121, 432, 564, 23, 1, 45, 788};
-
-    System.out.println("Array ordenado em ordem crescente:");
-    radixSortAsc(data);
-    for (int num : data) {
-      System.out.print(num + " ");
-    }
-    System.out.println();
-
-    int[] dataDesc = {121, 432, 564, 23, 1, 45, 788};
-
-    System.out.println("Array ordenado em ordem decrescente:");
-    radixSortDesc(dataDesc);
-    for (int num : dataDesc) {
-      System.out.print(num + " ");
-    }
-    System.out.println();
-  }
 }
