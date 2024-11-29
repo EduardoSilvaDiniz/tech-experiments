@@ -1,32 +1,29 @@
 package main.java.search;
 
 public class JumpSearch {
-  public static int jumpSearch(int[] arr, int x)
-  {
-    int n = arr.length;
+  public static int search(int[] list, int value) {
+    int length = list.length;
 
-    int step = (int)Math.floor(Math.sqrt(n));
+    int step = (int) Math.floor(Math.sqrt(length));
 
     int prev = 0;
-    for (int minStep = Math.min(step, n)-1; arr[minStep] < x; minStep = Math.min(step, n)-1)
-    {
+    for (int minStep = Math.min(step, length) - 1; list[minStep] < value; minStep = Math.min(step, length) - 1) {
       prev = step;
-      step += (int)Math.floor(Math.sqrt(n));
-      if (prev >= n)
+      step += (int) Math.floor(Math.sqrt(length));
+      if (prev >= length)
         return -1;
     }
 
-    while (arr[prev] < x)
-    {
+    while (list[prev] < value) {
       prev++;
 
-      if (prev == Math.min(step, n))
+      if (prev == Math.min(step, length))
         return -1;
     }
 
-    if (arr[prev] == x)
+    if (list[prev] == value)
       return prev;
 
-    return -1;
+    throw new IllegalArgumentException("Value not found");
   }
 }

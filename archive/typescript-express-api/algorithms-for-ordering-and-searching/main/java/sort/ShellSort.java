@@ -3,23 +3,19 @@ package main.java.sort;
 import java.lang.Math;
 
 public class ShellSort {
-  public static void shell(int[] lista, int tamanho) {
-    int i, j, aux;
-    double k = Math.log(tamanho + 1) / Math.log(3);
-    k = Math.floor(k + 0.5);
-    int h = (int) ((Math.pow(3, (int) k) - 1) / 2);
+  public static void sort(int[] arrayToSort) {
+    int n = arrayToSort.length;
 
-    while (h > 0) {
-      for (i = h; i < tamanho; i++) {
-        aux = lista[i];
-        j = i;
-        while (j >= h && lista[j - h] > aux) {
-          lista[j] = lista[j - h];
-          j -= h;
+    for (int gap = n / 2; gap > 0; gap /= 2) {
+      for (int i = gap; i < n; i++) {
+        int key = arrayToSort[i];
+        int j = i;
+        while (j >= gap && arrayToSort[j - gap] > key) {
+          arrayToSort[j] = arrayToSort[j - gap];
+          j -= gap;
         }
-        lista[j] = aux;
+        arrayToSort[j] = key;
       }
-      h = (h - 1) / 3;
     }
   }
 }

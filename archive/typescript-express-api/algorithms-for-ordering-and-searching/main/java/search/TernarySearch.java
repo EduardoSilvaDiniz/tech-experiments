@@ -1,24 +1,46 @@
 package main.java.search;
 
 public class TernarySearch {
-  public static int ternarySearch(int[] list, int value, int left, int right) {
-    if (left <= right) {
-      int mid = left + (right - left) / 3;
-      int secondMid = right - (right - left) / 3;
+  public static int search(int[] list, int value) {
+    int l = 0;
+    int r = list.length - 1;
 
-      if (list[mid] == value)
-        return mid;
+    if (r >= l) {
+      int mid1 = l + (r - l) / 3;
+      int mid2 = r - (r - l) / 3;
 
-      if (list[secondMid] == value)
-        return secondMid;
+      if (list[mid1] == value)
+        return mid1;
+      if (list[mid2] == value)
+        return mid2;
 
-      if (value < list[mid])
-        return ternarySearch(list, left, mid - 1, value);
-      else if (value > list[secondMid])
-        return ternarySearch(list, secondMid + 1, right, value);
+      if (value < list[mid1])
+        return search(list, value, l, mid1 - 1);
+      else if (value > list[mid2])
+        return search(list, value, mid2 + 1, r);
       else
-        return ternarySearch(list, mid + 1, secondMid - 1, value);
+        return search(list, value, mid1 + 1, mid2 - 1);
     }
-    throw new IllegalArgumentException("value not found");
+    return -1;
+  }
+
+  private static int search(int[] ar, int key, int l, int r) {
+    if (r >= l) {
+      int mid1 = l + (r - l) / 3;
+      int mid2 = r - (r - l) / 3;
+
+      if (ar[mid1] == key)
+        return mid1;
+      if (ar[mid2] == key)
+        return mid2;
+
+      if (key < ar[mid1])
+        return search(ar, key, l, mid1 - 1);
+      else if (key > ar[mid2])
+        return search(ar, key, mid2 + 1, r);
+      else
+        return search(ar, key, mid1 + 1, mid2 - 1);
+    }
+    return -1;
   }
 }

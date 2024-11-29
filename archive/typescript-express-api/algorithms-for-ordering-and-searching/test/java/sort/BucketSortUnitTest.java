@@ -1,4 +1,4 @@
-package test.java.search;
+package test.java.sort;
 
 import main.java.sort.BucketSort;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BucketSortTest {
+public class BucketSortUnitTest {
   private BucketSort sorter;
 
   @BeforeEach

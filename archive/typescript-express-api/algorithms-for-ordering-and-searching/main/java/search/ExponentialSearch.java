@@ -2,7 +2,7 @@ package main.java.search;
 
 public class ExponentialSearch {
 
-  public static int exponentialSearch(int[] list, int value) {
+  public static int search(int[] list, int value) {
     if (list.length == 0)
       throw new IllegalArgumentException("empty list");
 
@@ -15,6 +15,6 @@ public class ExponentialSearch {
     while (exponentialValue < listSize && list[exponentialValue] < value)
       exponentialValue *= 2;
 
-    return BinarySearch.binarySearch(list, value, exponentialValue / 2, Math.min(exponentialValue, listSize));
+    return BinarySearch.search(list, value, exponentialValue / 2, Math.min(exponentialValue, listSize));
   }
 }
