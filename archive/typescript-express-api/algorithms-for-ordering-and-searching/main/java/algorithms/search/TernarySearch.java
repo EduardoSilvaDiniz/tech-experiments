@@ -1,7 +1,12 @@
-package main.java.search;
+package main.java.algorithms.search;
 
-public class TernarySearch {
-  public static int search(int[] list, int value) {
+import main.java.algorithms.base.Result;
+import main.java.algorithms.base.SearchAlgorithm;
+
+public class TernarySearch extends SearchAlgorithm {
+      /*
+  @Override
+  public Result search(int[] list, int value) {
     int l = 0;
     int r = list.length - 1;
 
@@ -20,9 +25,11 @@ public class TernarySearch {
         return search(list, value, mid2 + 1, r);
       else
         return search(list, value, mid1 + 1, mid2 - 1);
+
     }
     return -1;
   }
+       */
 
   private static int search(int[] ar, int key, int l, int r) {
     if (r >= l) {
@@ -42,5 +49,10 @@ public class TernarySearch {
         return search(ar, key, mid1 + 1, mid2 - 1);
     }
     return -1;
+  }
+
+  @Override
+  public Result search(int[] list, int target) {
+    return null;
   }
 }

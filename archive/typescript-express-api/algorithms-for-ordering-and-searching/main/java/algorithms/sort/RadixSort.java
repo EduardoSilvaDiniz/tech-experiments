@@ -1,4 +1,4 @@
-package main.java.sort;
+package main.java.algorithms.sort;
 
 public class RadixSort {
   public static void radixSortAsc(int[] list) {

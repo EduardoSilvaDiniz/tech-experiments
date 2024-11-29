@@ -1,7 +1,6 @@
-package main.java.sort;
+package main.java.algorithms.sort;
 
-import main.java.interfaces.Sorter;
-
+import main.java.algorithms.base.Sorter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -9,6 +8,7 @@ import java.util.List;
 
 public class BucketSort implements Sorter<Integer> {
   private final Comparator<Integer> comparator;
+  protected int comparisonCount = 0;
 
   public BucketSort(Comparator<Integer> comparator) {
     this.comparator = comparator;
@@ -16,6 +16,14 @@ public class BucketSort implements Sorter<Integer> {
 
   public BucketSort() {
     comparator = Comparator.naturalOrder();
+  }
+
+  public int getComparisonCount() {
+    return comparisonCount;
+  }
+
+  public void incrementComparisonCount() {
+    comparisonCount++;
   }
 
   @Override

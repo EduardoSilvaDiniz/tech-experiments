@@ -1,4 +1,4 @@
-package main.java.sort;
+package main.java.algorithms.sort;
 
 public class InsertionSort {
   public static int[] sort(int[] list) {

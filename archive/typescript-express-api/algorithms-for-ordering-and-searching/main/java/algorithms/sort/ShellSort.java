@@ -1,4 +1,4 @@
-package main.java.sort;
+package main.java.algorithms.sort;
 
 public class ShellSort {
   public static void sort(int[] arrayToSort) {

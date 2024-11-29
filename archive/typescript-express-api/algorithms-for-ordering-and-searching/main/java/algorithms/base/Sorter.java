@@ -1,4 +1,4 @@
-package main.java.interfaces;
+package main.java.algorithms.base;
 
 import java.util.List;
 
