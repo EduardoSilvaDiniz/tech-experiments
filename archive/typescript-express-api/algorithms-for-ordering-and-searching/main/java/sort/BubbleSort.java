@@ -1,15 +1,8 @@
 package main.java.sort;
 
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Mode;
-
-
 public class BubbleSort {
-  @Benchmark
-  @BenchmarkMode(Mode.AverageTime)
   public static int[] sort(int[] list) {
-    int aux = 0;
+    int aux;
 
     for (int i = 0; i < list.length; i++) {
       for (int j = 0; j < list.length - 1; j++) {

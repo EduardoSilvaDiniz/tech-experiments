@@ -1,6 +1,5 @@
 package test.java.sort;
 
-import main.java.sort.BubbleSort;
 import main.java.sort.ShellSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

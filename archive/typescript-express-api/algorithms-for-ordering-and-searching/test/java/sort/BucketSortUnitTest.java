@@ -12,7 +12,7 @@ public class BucketSortUnitTest {
   private BucketSort sorter;
 
   @BeforeEach
-  public void setUp() throws Exception {
+  public void setUp() {
     sorter = new BucketSort();
   }
 
