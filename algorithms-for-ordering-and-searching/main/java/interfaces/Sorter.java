@@ -1,4 +1,4 @@
-package main.java.sort;
+package main.java.interfaces;
 
 import java.util.List;
 

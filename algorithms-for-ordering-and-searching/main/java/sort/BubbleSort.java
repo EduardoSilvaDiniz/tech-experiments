@@ -8,7 +8,7 @@ import org.openjdk.jmh.annotations.Mode;
 public class BubbleSort {
   @Benchmark
   @BenchmarkMode(Mode.AverageTime)
-  public static int[] bubbleSort(int[] list) {
+  public static int[] sort(int[] list) {
     int aux = 0;
 
     for (int i = 0; i < list.length; i++) {

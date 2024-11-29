@@ -1,28 +1,45 @@
 package main.java.sort;
 
 public class QuickSort {
-  public void quickSort(int[] arr, int low, int high) {
-    if (low < high) {
-      int pivotIndex = partition(arr, low, high);
-      quickSort(arr, low, pivotIndex - 1);
-      quickSort(arr, pivotIndex + 1, high);
+  public static void sort(int[] list) {
+    int begin = 0;
+    int end = list.length-1;
+
+    if (begin < end) {
+      int partitionIndex = partition(list, begin, end);
+
+      sort(list, begin, partitionIndex - 1);
+      sort(list, partitionIndex + 1, end);
     }
   }
 
-  public int partition(int[] arr, int low, int high) {
-    int pivot = arr[high];
-    int i = low - 1;
-    for (int j = low; j < high; j++) {
-      if (arr[j] < pivot) {
+  private static void sort(int[] list, int begin, int end) {
+    if (begin < end) {
+      int partitionIndex = partition(list, begin, end);
+
+      sort(list, begin, partitionIndex - 1);
+      sort(list, partitionIndex + 1, end);
+    }
+  }
+
+  private static int partition(int[] list, int begin, int end) {
+    int pivot = list[end];
+    int i = (begin - 1);
+
+    for (int j = begin; j < end; j++) {
+      if (list[j] <= pivot) {
         i++;
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+
+        int swapTemp = list[i];
+        list[i] = list[j];
+        list[j] = swapTemp;
       }
     }
-    int temp = arr[i + 1];
-    arr[i + 1] = arr[high];
-    arr[high] = temp;
+
+    int swapTemp = list[i + 1];
+    list[i + 1] = list[end];
+    list[end] = swapTemp;
+
     return i + 1;
   }
 }

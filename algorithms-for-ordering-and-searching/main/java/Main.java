@@ -1,13 +1,8 @@
 package main.java;
 
-import main.java.search.InterpolationSearch;
 import main.java.sort.BubbleSort;
-import main.java.sort.BucketSort;
-import org.apache.commons.lang3.Range;
-import org.apache.commons.math3.util.IntegerSequence;
 
 import java.util.stream.IntStream;
-import java.util.stream.DoubleStream;
 
 
 public class Main {
@@ -16,7 +11,7 @@ public class Main {
     int[] list = IntStream.range(1, 1000).toArray();
     long inicio = System.currentTimeMillis();
 
-    BubbleSort.bubbleSort(list);
+    BubbleSort.sort(list);
 
     long fim = System.currentTimeMillis();
     long tempoExecucao = fim - inicio;

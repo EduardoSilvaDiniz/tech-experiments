@@ -1,18 +1,18 @@
 package main.java.sort;
 
 public class SelectionSort {
-  public void selectionSort(int[] arr) {
-    int n = arr.length;
+  public static void sort(int[] list) {
+    int n = list.length;
     for (int i = 0; i < n - 1; i++) {
       int minIndex = i;
       for (int j = i + 1; j < n; j++) {
-        if (arr[j] < arr[minIndex]) {
+        if (list[j] < list[minIndex]) {
           minIndex = j;
         }
       }
-      int temp = arr[minIndex];
-      arr[minIndex] = arr[i];
-      arr[i] = temp;
+      int temp = list[minIndex];
+      list[minIndex] = list[i];
+      list[i] = temp;
     }
   }
 }

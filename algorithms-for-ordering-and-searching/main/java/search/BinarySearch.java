@@ -2,7 +2,7 @@ package main.java.search;
 
 public class BinarySearch {
 
-  public static int binarySearch(int[] list, int value, int low, int high) {
+  public static int search(int[] list, int value, int low, int high) {
     if (list.length == 0)
       throw new IllegalArgumentException("empty list");
 
@@ -20,7 +20,7 @@ public class BinarySearch {
     throw new IllegalArgumentException("value not found");
   }
 
-  public static int binarySearch(int[] list, int value) {
+  public static int search(int[] list, int value) {
     if (list.length == 0)
       throw new IllegalArgumentException("empty list");
 
