@@ -3,7 +3,6 @@ package test.java.sort;
 import main.java.algorithms.sort.BubbleSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-//TODO adicionar alguma forma de registrar número de comparações realizadas.
 public class BubbleSortUnitTest {
   @Test
   public void bubbleSortTest(){
