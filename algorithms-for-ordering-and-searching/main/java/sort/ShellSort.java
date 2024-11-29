@@ -1,7 +1,5 @@
 package main.java.sort;
 
-import java.lang.Math;
-
 public class ShellSort {
   public static void sort(int[] arrayToSort) {
     int n = arrayToSort.length;

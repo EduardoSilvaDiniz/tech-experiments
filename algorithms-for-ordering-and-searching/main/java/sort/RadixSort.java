@@ -1,7 +1,21 @@
 package main.java.sort;
 
 public class RadixSort {
-  public static int getMax(int[] list) {
+  public static void radixSortAsc(int[] list) {
+    int maxElement = getMax(list);
+
+    for (int place = 1; maxElement / place > 0; place *= 10)
+      countingSortAsc(list, place);
+  }
+
+  public static void radixSortDesc(int[] list) {
+    int maxElement = getMax(list);
+
+    for (int place = 1; maxElement / place > 0; place *= 10)
+      countingSortDesc(list, place);
+  }
+
+  private static int getMax(int[] list) {
     int max = list[0];
     for (int i = 1; i < list.length; i++) {
       if (list[i] > max) {
@@ -11,7 +25,7 @@ public class RadixSort {
     return max;
   }
 
-  public static void countingSortAsc(int[] list, int place) {
+  private static void countingSortAsc(int[] list, int place) {
     int length = list.length;
     int[] output = new int[length];
     int[] count = new int[10];
@@ -34,7 +48,7 @@ public class RadixSort {
     System.arraycopy(output, 0, list, 0, length);
   }
 
-  public static void countingSortDesc(int[] list, int place) {
+  private static void countingSortDesc(int[] list, int place) {
     int length = list.length;
     int[] output = new int[length];
     int[] count = new int[10];
@@ -55,19 +69,5 @@ public class RadixSort {
     }
 
     System.arraycopy(output, 0, list, 0, length);
-  }
-
-  public static void radixSortAsc(int[] list) {
-    int maxElement = getMax(list);
-
-    for (int place = 1; maxElement / place > 0; place *= 10)
-      countingSortAsc(list, place);
-  }
-
-  public static void radixSortDesc(int[] list) {
-    int maxElement = getMax(list);
-
-    for (int place = 1; maxElement / place > 0; place *= 10)
-      countingSortDesc(list, place);
   }
 }
