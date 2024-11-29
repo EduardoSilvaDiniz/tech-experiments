@@ -1,6 +1,6 @@
 package test.java.sort;
 
-import main.java.sort.QuickSort;
+import main.java.algorithms.sort.QuickSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,8 +8,8 @@ public class QuickSortUnitTest {
 
   @Test
   public void quickSortTest(){
-    int[] list = {9,10,6,21,4,1,14};
-    int[] listOrder = {1,4,6,9,10,14,21};
+    int[] list = {80, 50, 60, 30, 20, 10, 70, 0, 40, 500, 600, 602, 200, 15};
+    int[] listOrder = {0, 10, 15, 20, 30, 40, 50, 60, 70, 80, 200, 500, 600, 602};
     QuickSort.sort(list);
 
     Assertions.assertEquals(listOrder[0],list[0]);

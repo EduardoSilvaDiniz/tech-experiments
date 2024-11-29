@@ -1,7 +1,16 @@
-package main.java.sort;
+package main.java.algorithms.sort;
 
-public class MergeSort {
-  public static void sort(int[] listToOrder) {
+import main.java.algorithms.base.Result;
+import main.java.algorithms.base.SortingAlgorithm;
+
+public class MergeSort extends SortingAlgorithm {
+  public Result sort(int[] list){
+    mergeSort(list);
+    return new Result(list, comparisonCount);
+
+  }
+
+  private static void mergeSort(int[] listToOrder) {
     int length = listToOrder.length;
     if (length < 2)
       return;
@@ -11,13 +20,13 @@ public class MergeSort {
 
     System.arraycopy(listToOrder, 0, l, 0, mid);
     if (length - mid >= 0) System.arraycopy(listToOrder, mid, r, 0, length - mid);
-    sort(l, mid);
-    sort(r, length - mid);
+    mergeSort(l, mid);
+    mergeSort(r, length - mid);
 
     merge(listToOrder, l, r, mid, length - mid);
   }
 
-  private static void sort(int[] listToOrder, int length) {
+  private static void mergeSort(int[] listToOrder, int length) {
     if (length < 2)
       return;
     int mid = length / 2;
@@ -28,8 +37,8 @@ public class MergeSort {
 
     if (length - mid >= 0) System.arraycopy(listToOrder, mid, r, 0, length - mid);
 
-    sort(l, mid);
-    sort(r, length - mid);
+    mergeSort(l, mid);
+    mergeSort(r, length - mid);
 
     merge(listToOrder, l, r, mid, length - mid);
   }
