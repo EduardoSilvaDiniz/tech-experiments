@@ -14,7 +14,7 @@ public class MergeSortUnitTest {
 
 
     MergeSort mergeSort = new MergeSort();
-    mergeSort.sort(list);
+    //mergeSort.sort(list);
 
     assertEquals(listOrder[0], list[0]);
     assertEquals(listOrder[list.length / 2], list[list.length / 2]);

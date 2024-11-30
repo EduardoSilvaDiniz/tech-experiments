@@ -1,5 +1,7 @@
 package main.java.algorithms.base;
 
+import java.util.List;
+
 public abstract class SortingAlgorithm {
   protected int comparisonCount;
 
@@ -15,5 +17,5 @@ public abstract class SortingAlgorithm {
     comparisonCount++;
   }
 
-  public abstract Result sort(int[] list);
+  public abstract Result sort(List<Integer> list);
 }

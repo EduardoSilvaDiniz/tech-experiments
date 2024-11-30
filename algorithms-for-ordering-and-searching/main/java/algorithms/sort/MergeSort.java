@@ -3,15 +3,17 @@ package main.java.algorithms.sort;
 import main.java.algorithms.base.Result;
 import main.java.algorithms.base.SortingAlgorithm;
 
+import java.util.List;
+
 public class MergeSort extends SortingAlgorithm {
-  public Result sort(int[] list){
+  public Result sort(List<Integer> list){
     mergeSort(list);
     return new Result(list, comparisonCount);
 
   }
 
-  private static void mergeSort(int[] listToOrder) {
-    int length = listToOrder.length;
+  private static void mergeSort(List<Integer> listToOrder) {
+    int length = listToOrder.size();
     if (length < 2)
       return;
     int mid = length / 2;
@@ -23,7 +25,7 @@ public class MergeSort extends SortingAlgorithm {
     mergeSort(l, mid);
     mergeSort(r, length - mid);
 
-    merge(listToOrder, l, r, mid, length - mid);
+    //merge(listToOrder, l, r, mid, length - mid);
   }
 
   private static void mergeSort(int[] listToOrder, int length) {

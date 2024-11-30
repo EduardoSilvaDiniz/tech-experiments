@@ -3,19 +3,21 @@ package main.java.algorithms.sort;
 import main.java.algorithms.base.Result;
 import main.java.algorithms.base.SortingAlgorithm;
 
+import java.util.List;
+
 public class BubbleSort extends SortingAlgorithm {
   @Override
-  public Result sort(int[] list) {
+  public Result sort(List<Integer> list) {
     int aux;
     int comparisonCount = 0;
 
-    for (int i = 0; i < list.length; i++) {
-      for (int j = 0; j < list.length - 1; j++) {
+    for (int i = 0; i < list.size(); i++) {
+      for (int j = 0; j < list.size(); j++) {
         comparisonCount++;
-        if (list[j] > list[j + 1]) {
-          aux = list[j];
-          list[j] = list[j + 1];
-          list[j + 1] = aux;
+        if (list.get(j) > list.get(j + 1)) {
+          aux = list.get(j);
+          list.set(j, list.get(j + 1));
+          list.set(j+1, aux);
         }
       }
     }
