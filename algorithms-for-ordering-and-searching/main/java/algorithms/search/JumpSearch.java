@@ -2,33 +2,38 @@ package main.java.algorithms.search;
 
 import main.java.algorithms.base.Result;
 import main.java.algorithms.base.SearchAlgorithm;
-import org.junit.jupiter.params.aggregator.ArgumentAccessException;
+
+import java.util.List;
 
 public class JumpSearch extends SearchAlgorithm {
   @Override
-  public Result search(int[] list, int value) {
-    int length = list.length;
+  public Result search(List<Integer> list, int target) {
+    return new Result(jumpSearch(list, target), comparisonCount);
+  }
 
-    int step = (int) Math.floor(Math.sqrt(length));
+  public int jumpSearch(List<Integer> list, int target) {
+    int n = list.size();
+
+    int step = (int) Math.floor(Math.sqrt(n));
 
     int prev = 0;
-    for (int minStep = Math.min(step, length) - 1; list[minStep] < value; minStep = Math.min(step, length) - 1) {
+    for (int minStep = Math.min(step, n) - 1; list.get(minStep) < target; minStep = Math.min(step, n) - 1) {
       prev = step;
-      step += (int) Math.floor(Math.sqrt(length));
-      if (prev >= length)
-        throw new ArgumentAccessException("Value not found");
+      step += (int) Math.floor(Math.sqrt(n));
+      if (prev >= n)
+        return -1;
     }
 
-    while (list[prev] < value) {
+    while (list.get(prev) < target) {
       prev++;
 
-      if (prev == Math.min(step, length))
-      throw new ArgumentAccessException("Value not found");
+      if (prev == Math.min(step, n))
+        return -1;
     }
 
-    //if (list[prev] == value)
-      //return prev;
+    if (list.get(prev) == target)
+      return prev;
 
-    throw new IllegalArgumentException("Value not found");
+    return -1;
   }
 }

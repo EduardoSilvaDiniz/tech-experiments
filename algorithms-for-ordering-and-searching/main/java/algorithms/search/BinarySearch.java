@@ -3,20 +3,22 @@ package main.java.algorithms.search;
 import main.java.algorithms.base.Result;
 import main.java.algorithms.base.SearchAlgorithm;
 
+import java.util.List;
+
 public class BinarySearch extends SearchAlgorithm {
-  public Result search(int[] list, int value) {
-    if (list.length == 0)
+  public Result search(List<Integer> list, int target) {
+    if (list.isEmpty())
       throw new IllegalArgumentException("empty list");
 
     int low = 0;
-    int high = list.length - 1;
+    int high = list.size();
 
     while (low <= high) {
       int mid = low + (high - low) / 2;
 
-      if (list[mid] == value)
+      if (list.get(mid) == target)
         return new Result(mid, comparisonCount);
-      if (list[mid] < value)
+      if (list.get(mid) < target)
         low = mid + 1;
       else
         high = mid - 1;
@@ -25,16 +27,16 @@ public class BinarySearch extends SearchAlgorithm {
     throw new IllegalArgumentException("value not found");
   }
 
-  public int search(int[] list, int value, int low, int high) {
-    if (list.length == 0)
+  public int search(List<Integer> list, int value, int low, int high) {
+    if (list.isEmpty())
       throw new IllegalArgumentException("empty list");
 
     while (low <= high) {
       int mid = low + (high - low) / 2;
 
-      if (list[mid] == value)
+      if (list.get(mid) == value)
         return mid;
-      if (list[mid] < value)
+      if (list.get(mid) < value)
         low = mid + 1;
       else
         high = mid - 1;

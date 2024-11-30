@@ -1,5 +1,7 @@
 package main.java.algorithms.base;
 
+import java.util.List;
+
 public abstract class SearchAlgorithm {
   protected int comparisonCount;
 
@@ -15,5 +17,5 @@ public abstract class SearchAlgorithm {
     comparisonCount++;
   }
 
-  public abstract Result search(int[] list, int target);
+  public abstract Result search(List<Integer> list, int target);
 }
