@@ -2,10 +2,11 @@ package main.java.algorithms.search;
 
 import main.java.algorithms.base.Result;
 import main.java.algorithms.base.SearchAlgorithm;
+import main.java.algorithms.base.Searcher;
 
 import java.util.List;
 
-public class InterpolationSearch extends SearchAlgorithm {
+public class InterpolationSearch extends SearchAlgorithm implements Searcher {
   @Override
   public Result search(List<Integer> list, int target) {
     return new Result(interpolationSearch(list, target, 0, list.size()-1), comparisonCount);

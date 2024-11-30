@@ -2,10 +2,11 @@ package main.java.algorithms.search;
 
 import main.java.algorithms.base.Result;
 import main.java.algorithms.base.SearchAlgorithm;
+import main.java.algorithms.base.Searcher;
 
 import java.util.List;
 
-public class BinarySearch extends SearchAlgorithm {
+public class BinarySearch extends SearchAlgorithm implements Searcher {
   public Result search(List<Integer> list, int target) {
     if (list.isEmpty())
       throw new IllegalArgumentException("empty list");

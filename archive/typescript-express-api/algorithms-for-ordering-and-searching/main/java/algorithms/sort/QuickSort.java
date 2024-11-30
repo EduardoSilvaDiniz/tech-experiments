@@ -1,12 +1,12 @@
 package main.java.algorithms.sort;
 
 import main.java.algorithms.base.Result;
+import main.java.algorithms.base.Sorter;
 import main.java.algorithms.base.SortingAlgorithm;
 
 import java.util.List;
 
-public class QuickSort extends SortingAlgorithm {
-  @Override
+public class QuickSort extends SortingAlgorithm implements Sorter {
   public Result sort(List<Integer> list) {
     int begin = 0;
     int end = list.size() - 1;

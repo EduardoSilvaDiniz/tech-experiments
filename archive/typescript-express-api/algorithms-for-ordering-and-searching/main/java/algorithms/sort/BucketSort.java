@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BucketSort implements Sorter<Integer>{
+public class BucketSort implements Sorter{
   private final Comparator<Integer> comparator;
   protected int comparisonCount = 0;
 

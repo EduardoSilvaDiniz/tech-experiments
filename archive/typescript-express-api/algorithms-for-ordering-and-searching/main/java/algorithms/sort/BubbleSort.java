@@ -1,12 +1,12 @@
 package main.java.algorithms.sort;
 
 import main.java.algorithms.base.Result;
+import main.java.algorithms.base.Sorter;
 import main.java.algorithms.base.SortingAlgorithm;
 
 import java.util.List;
 
-public class BubbleSort extends SortingAlgorithm {
-  @Override
+public class BubbleSort extends SortingAlgorithm implements Sorter {
   public Result sort(List<Integer> list) {
     int aux;
 
