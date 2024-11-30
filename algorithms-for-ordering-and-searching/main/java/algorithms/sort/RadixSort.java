@@ -3,6 +3,8 @@ package main.java.algorithms.sort;
 import main.java.algorithms.base.Result;
 import main.java.algorithms.base.SortingAlgorithm;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RadixSort extends SortingAlgorithm {
@@ -16,37 +18,35 @@ public class RadixSort extends SortingAlgorithm {
     return new Result(list, comparisonCount);
   }
 
-  private static void countingSortAsc(List<Integer> list, int place) {
-    int length = list.size();
-    int[] output = new int[length];
-    int[] count = new int[10];
+  private void countingSortAsc(List<Integer> list, int place) {
+    int size = list.size();
+    List<Integer> output = new ArrayList<>(Collections.nCopies(size, 0));
+    List<Integer> count = new ArrayList<>(Collections.nCopies(10, 0));
 
     for (int j : list) {
+      incrementComparisonCount();
       int index = (j / place) % 10;
-      count[index]++;
+      count.set(index, count.get(index) + 1);
     }
 
     for (int i = 1; i < 10; i++)
-      count[i] += count[i - 1];
+      count.set(i, count.get(i) + count.get(i - 1));
 
-    for (int i = length - 1; i >= 0; i--) {
+    for (int i = size - 1; i >= 0; i--) {
       int index = (list.get(i) / place) % 10;
-      output[count[index] - 1] = list.get(i);
-      count[index]--;
+      output.set(count.get(index) - 1, list.get(i));
+      count.set(index, count.get(index) - 1);
     }
 
-    System.arraycopy(output, 0, list, 0, length);
-    for (Integer key : output)
-      list.add
-
+    for (int i = 0; i < size; i++)
+      list.set(i, output.get(i));
   }
 
-  private static int getMax(List<Integer> list) {
-    int max = list.getFirst();
+  private int getMax(List<Integer> list) {
+    int max = list.get(0);
     for (int i = 1; i < list.size(); i++) {
-      if (list.get(i) > max) {
+      if (list.get(i) > max)
         max = list.get(i);
-      }
     }
     return max;
   }

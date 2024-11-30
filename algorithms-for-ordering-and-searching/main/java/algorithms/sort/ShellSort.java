@@ -1,19 +1,26 @@
 package main.java.algorithms.sort;
 
-public class ShellSort {
-  public static void sort(int[] arrayToSort) {
-    int n = arrayToSort.length;
+import main.java.algorithms.base.Result;
+import main.java.algorithms.base.SortingAlgorithm;
 
-    for (int gap = n / 2; gap > 0; gap /= 2) {
-      for (int i = gap; i < n; i++) {
-        int key = arrayToSort[i];
+import java.util.List;
+
+public class ShellSort extends SortingAlgorithm {
+  public Result sort(List<Integer> listToSort) {
+    int size = listToSort.size();
+
+    for (int gap = size / 2; gap > 0; gap /= 2) {
+      for (int i = gap; i < size; i++) {
+        int key = listToSort.get(i);
         int j = i;
-        while (j >= gap && arrayToSort[j - gap] > key) {
-          arrayToSort[j] = arrayToSort[j - gap];
+        while (j >= gap && listToSort.get(j - gap) > key) {
+          incrementComparisonCount();
+          listToSort.set(j, listToSort.get(j - gap));
           j -= gap;
         }
-        arrayToSort[j] = key;
+        listToSort.set(j, key);
       }
     }
+    return new Result(listToSort, comparisonCount);
   }
 }
