@@ -17,5 +17,5 @@ public abstract class SearchAlgorithm {
     comparisonCount++;
   }
 
-  public abstract Result search(List<Integer> list, int target);
 }
+

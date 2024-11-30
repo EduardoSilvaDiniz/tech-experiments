@@ -16,6 +16,4 @@ public abstract class SortingAlgorithm {
   protected void incrementComparisonCount() {
     comparisonCount++;
   }
-
-  public abstract Result sort(List<Integer> list);
 }

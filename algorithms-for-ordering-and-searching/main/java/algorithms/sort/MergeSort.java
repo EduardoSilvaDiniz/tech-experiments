@@ -1,12 +1,13 @@
 package main.java.algorithms.sort;
 
 import main.java.algorithms.base.Result;
+import main.java.algorithms.base.Sorter;
 import main.java.algorithms.base.SortingAlgorithm;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MergeSort extends SortingAlgorithm {
+public class MergeSort extends SortingAlgorithm implements Sorter {
   public Result sort(List<Integer> list) {
     mergeSort(list, list.size());
     return new Result(list, comparisonCount);

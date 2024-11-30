@@ -1,14 +1,14 @@
 package main.java.algorithms.sort;
 
 import main.java.algorithms.base.Result;
+import main.java.algorithms.base.Sorter;
 import main.java.algorithms.base.SortingAlgorithm;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RadixSort extends SortingAlgorithm {
-  @Override
+public class RadixSort extends SortingAlgorithm implements Sorter {
   public Result sort(List<Integer> list) {
     int maxElement = getMax(list);
 

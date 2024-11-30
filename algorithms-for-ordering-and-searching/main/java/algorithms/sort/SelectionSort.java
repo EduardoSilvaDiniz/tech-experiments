@@ -1,11 +1,12 @@
 package main.java.algorithms.sort;
 
 import main.java.algorithms.base.Result;
+import main.java.algorithms.base.Sorter;
 import main.java.algorithms.base.SortingAlgorithm;
 
 import java.util.List;
 
-public class SelectionSort extends SortingAlgorithm {
+public class SelectionSort extends SortingAlgorithm implements Sorter {
   public Result sort(List<Integer> list) {
     int size = list.size();
     for (int i = 0; i < size - 1; i++) {
