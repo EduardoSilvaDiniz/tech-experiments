@@ -1,12 +1,13 @@
 package main.java.algorithms.sort;
 
+import main.java.algorithms.base.Result;
 import main.java.algorithms.base.Sorter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BucketSort implements Sorter<Integer> {
+public class BucketSort implements Sorter<Integer>{
   private final Comparator<Integer> comparator;
   protected int comparisonCount = 0;
 
@@ -27,13 +28,13 @@ public class BucketSort implements Sorter<Integer> {
   }
 
   @Override
-  public List<Integer> sort(List<Integer> arrayToSort) {
+  public Result sort(List<Integer> arrayToSort) {
     List<List<Integer>> buckets = splitIntoUnsortedBuckets(arrayToSort);
 
     for (List<Integer> bucket : buckets)
       bucket.sort(comparator);
 
-    return concatenateSortedBuckets(buckets);
+    return new Result(concatenateSortedBuckets(buckets), comparisonCount);
   }
 
   private List<Integer> concatenateSortedBuckets(List<List<Integer>> buckets) {
@@ -51,8 +52,10 @@ public class BucketSort implements Sorter<Integer> {
     List<List<Integer>> buckets = new ArrayList<>();
     for (int i = 0; i < numberOfbuckets; i++) buckets.add(new ArrayList<>());
 
-    for (int i : initialList)
+    for (int i : initialList){
+      incrementComparisonCount();
       buckets.get(hash(i, max, numberOfbuckets)).add(i);
+    }
 
     return buckets;
   }

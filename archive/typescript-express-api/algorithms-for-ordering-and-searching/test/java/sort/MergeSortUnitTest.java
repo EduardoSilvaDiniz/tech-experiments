@@ -1,23 +1,34 @@
 package test.java.sort;
 
+import main.java.algorithms.base.Result;
+import main.java.algorithms.sort.InsertionSort;
 import main.java.algorithms.sort.MergeSort;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MergeSortUnitTest {
+  private MergeSort sorter;
+
+  @BeforeEach
+  public void setUp() {
+    sorter = new MergeSort();
+  }
 
   @Test
-  void givenUnsortedList_whenSortedUsingBucketSorter_checkSortingCorrect() {
-    int[] list = {80, 50, 60, 30, 20, 10, 70, 0, 40, 500, 600, 602, 200, 15};
-    int[] listOrder = {0, 10, 15, 20, 30, 40, 50, 60, 70, 80, 200, 500, 600, 602};
+  public void insertionSortTest() {
 
+    List<Integer> unsorted = Arrays.asList(80,50,60,30,20,10,70,0,40,500,600,602,200,15);
+    List<Integer> expected = Arrays.asList(0,10,15,20,30,40,50,60,70,80,200,500,600,602);
 
-    MergeSort mergeSort = new MergeSort();
-    //mergeSort.sort(list);
+    Result actual = sorter.sort(unsorted);
+    int sizeMid = expected.size() / 2;
 
-    assertEquals(listOrder[0], list[0]);
-    assertEquals(listOrder[list.length / 2], list[list.length / 2]);
-    assertEquals(listOrder[list.length - 1], list[list.length - 1]);
+    assertEquals(expected, actual.list);
+    System.out.println(actual.comparisons + " Vezes que o algoritmo fez comparações");
   }
 }
