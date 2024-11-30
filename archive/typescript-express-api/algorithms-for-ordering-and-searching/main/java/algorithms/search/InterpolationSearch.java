@@ -3,34 +3,45 @@ package main.java.algorithms.search;
 import main.java.algorithms.base.Result;
 import main.java.algorithms.base.SearchAlgorithm;
 
+import java.util.List;
+
 public class InterpolationSearch extends SearchAlgorithm {
   @Override
-  public Result search(int[] list, int value) {
-    int low = 0;
-    int high = list.length - 1;
+  public Result search(List<Integer> list, int target) {
+    return new Result(interpolationSearch(list, target, 0, list.size()-1), comparisonCount);
+  }
 
-    if (low <= high && value >= list[low] && value <= list[high]) {
-      int mid = low + ((value - list[low]) * (high - low) / (list[high] - list[low]));
+  public int interpolationSearch(List<Integer> list, int target, int low, int high) {
+    int pos;
 
-      //if (list[mid] == value) return mid;
+    if (low <= high && target >= list.get(low) && target <= list.get(high)) {
+      // Evita divisão por zero
+      if (list.get(high) == list.get(low)) {
+        if (list.get(low) == target) {
+          return low; // O target é igual ao valor em low
+        }
+        return -1; // O target não está presente
+      }
 
-      //if (list[mid] > value) return search(list, value, low, mid - 1);
+      pos = low + (((high - low) / (list.get(high) - list.get(low))) * (target - list.get(low)));
 
-      return new Result(search(list, value, mid + 1, high), comparisonCount);
+      if (pos < low || pos > high) {
+        return -1; // O target não está presente
+      }
+
+      // Condition of target found
+      if (list.get(pos) == target)
+        return pos;
+
+      // If x is larger, x is in right sub array
+      if (list.get(pos) < target)
+        return interpolationSearch(list, target ,pos + 1, high);
+
+      // If x is smaller, x is in left sub array
+      if (list.get(pos) > target)
+        return interpolationSearch(list, target, low, pos-1);
     }
     throw new IllegalArgumentException("value not found");
   }
 
-  private int search(int[] list, int value, int low, int high) {
-    if (low <= high && value >= list[low] && value <= list[high]) {
-      int mid = low + ((value - list[low]) * (high - low) / (list[high] - list[low]));
-
-      if (list[mid] == value) return mid;
-
-      if (list[mid] > value) return search(list, value, low, mid - 1);
-
-      return search(list, value, mid + 1, high);
-    }
-    throw new IllegalArgumentException("value not found");
-  }
 }

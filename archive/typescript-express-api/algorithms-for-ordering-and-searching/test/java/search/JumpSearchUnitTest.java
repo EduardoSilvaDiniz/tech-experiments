@@ -1,25 +1,28 @@
 package test.java.search;
 
+import main.java.algorithms.search.BinarySearch;
 import main.java.algorithms.search.JumpSearch;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class JumpSearchUnitTest {
-  @Test
-  public void interpolationSearchTest() {
-    int[] list = {13, 14, 16, 20, 47, 69, 75, 80, 85, 90};
-    /*
-    Assertions.assertEquals(0, JumpSearch.search(list, 13));
-    Assertions.assertEquals(1, JumpSearch.search(list, 14));
-    Assertions.assertEquals(2, JumpSearch.search(list, 16));
-    Assertions.assertEquals(3, JumpSearch.search(list, 20));
-    Assertions.assertEquals(4, JumpSearch.search(list, 47));
-    Assertions.assertEquals(5, JumpSearch.search(list, 69));
-    Assertions.assertEquals(6, JumpSearch.search(list, 75));
-    Assertions.assertEquals(7, JumpSearch.search(list, 80));
-    Assertions.assertEquals(8, JumpSearch.search(list, 85));
-    Assertions.assertEquals(9, JumpSearch.search(list, 90));
+import java.util.Arrays;
+import java.util.List;
 
-     */
+public class JumpSearchUnitTest {
+  private JumpSearch searched;
+
+  @BeforeEach
+  public void setUp() {
+    searched = new JumpSearch();
+  }
+
+  @Test
+  public void jumpSearchTest() {
+    List<Integer> list = Arrays.asList(0,10,15,20,30,40,50,60,70,80,200,500,600,602);
+
+    for (int i = 0; i < list.size(); i++)
+      Assertions.assertEquals(i, searched.search(list, list.get(i)).list.getFirst());
+
   }
 }
