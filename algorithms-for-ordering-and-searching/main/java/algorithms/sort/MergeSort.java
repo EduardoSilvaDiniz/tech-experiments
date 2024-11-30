@@ -3,62 +3,54 @@ package main.java.algorithms.sort;
 import main.java.algorithms.base.Result;
 import main.java.algorithms.base.SortingAlgorithm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MergeSort extends SortingAlgorithm {
-  public Result sort(List<Integer> list){
-    mergeSort(list);
+  public Result sort(List<Integer> list) {
+    mergeSort(list, list.size());
     return new Result(list, comparisonCount);
-
   }
 
-  private static void mergeSort(List<Integer> listToOrder) {
-    int length = listToOrder.size();
-    if (length < 2)
+  private void mergeSort(List<Integer> listToOrder, int size) {
+    if (size < 2)
       return;
-    int mid = length / 2;
-    int[] l = new int[mid];
-    int[] r = new int[length - mid];
+    int sizeMid = size / 2;
+    List<Integer> listLeft = new ArrayList<>(sizeMid);
+    List<Integer> listRight = new ArrayList<>(size - sizeMid);
 
-    System.arraycopy(listToOrder, 0, l, 0, mid);
-    if (length - mid >= 0) System.arraycopy(listToOrder, mid, r, 0, length - mid);
-    mergeSort(l, mid);
-    mergeSort(r, length - mid);
-
-    //merge(listToOrder, l, r, mid, length - mid);
-  }
-
-  private static void mergeSort(int[] listToOrder, int length) {
-    if (length < 2)
-      return;
-    int mid = length / 2;
-    int[] l = new int[mid];
-    int[] r = new int[length - mid];
-
-    System.arraycopy(listToOrder, 0, l, 0, mid);
-
-    if (length - mid >= 0) System.arraycopy(listToOrder, mid, r, 0, length - mid);
-
-    mergeSort(l, mid);
-    mergeSort(r, length - mid);
-
-    merge(listToOrder, l, r, mid, length - mid);
-  }
-
-  public static void merge(int[] a, int[] l, int[] r, int left, int right) {
-    int i = 0, j = 0, k = 0;
-
-    while (i < left && j < right) {
-      if (l[i] <= r[j])
-        a[k++] = l[i++];
-      else
-        a[k++] = r[j++];
+    for (int i = 0; i < sizeMid; i++) {
+      listLeft.add(listToOrder.get(i));
     }
 
-    while (i < left)
-      a[k++] = l[i++];
+    for (int i = sizeMid; i < listToOrder.size(); i++) {
+      listRight.add(listToOrder.get(i));
+    }
 
-    while (j < right)
-      a[k++] = r[j++];
+    mergeSort(listLeft, sizeMid);
+    mergeSort(listRight, size - sizeMid);
+
+    merge(listToOrder, listLeft, listRight);
+  }
+
+  public void merge(List<Integer> listToOrder, List<Integer> listLeft, List<Integer> listRight) {
+    int i = 0, j = 0, k = 0;
+    int sizeLeft = listLeft.size(), sizeRight = listRight.size();
+
+    while (i < sizeLeft && j < sizeRight) {
+      if (listLeft.get(i) <= listRight.get(j)) {
+        incrementComparisonCount();
+        listToOrder.set(k++, listLeft.get(i++));
+      } else {
+        incrementComparisonCount();
+        listToOrder.set(k++, listRight.get(j++));
+      }
+    }
+
+    while (i < sizeLeft)
+      listToOrder.set(k++, listLeft.get(i++));
+
+    while (j < sizeRight)
+      listToOrder.set(k++, listRight.get(j++));
   }
 }

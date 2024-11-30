@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InsertionSortUnitTest {
   private InsertionSort sorter;
@@ -28,9 +29,7 @@ public class InsertionSortUnitTest {
     Result actual = sorter.sort(unsorted);
     int sizeMid = expected.size() / 2;
 
-    Assertions.assertEquals(expected.getFirst(), actual.list.getFirst());
-    Assertions.assertEquals(expected.get(sizeMid), actual.list.get(sizeMid));
-    Assertions.assertEquals(expected.getLast(), actual.list.getLast());
+    assertEquals(expected, actual.list);
     System.out.println(actual.comparisons + " Vezes que o algoritmo fez comparações");
   }
 }

@@ -1,30 +1,47 @@
 package test.java.sort;
 
+import main.java.algorithms.base.Result;
 import main.java.algorithms.sort.RadixSort;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class RadixSortUnitTest {
+  private RadixSort sorter;
 
-  @Test
-  public void radixSortTestAsc(){
-    int[] list = {80, 50, 60, 30, 20, 10, 70, 0, 40, 500, 600, 602, 200, 15};
-    int[] listOrder = {0, 10, 15, 20, 30, 40, 50, 60, 70, 80, 200, 500, 600, 602};
-    RadixSort.radixSortAsc(list);
-
-    Assertions.assertEquals(listOrder[0],list[0]);
-    Assertions.assertEquals(listOrder[listOrder.length/2],list[list.length/2]);
-    Assertions.assertEquals(listOrder[listOrder.length-1],list[list.length-1]);
+  @BeforeEach
+  public void setUp() {
+    sorter = new RadixSort();
   }
+
   @Test
-  public void radixSortTestDesc(){
-    int[] list = {80, 50, 60, 30, 20, 10, 70, 0, 40, 500, 600, 602, 200, 15};
-    int[] listOrder = {602, 600, 500, 200, 80, 70, 60, 50, 40, 30, 20, 15, 10 ,0};
+  public void radixSortTestAsc() {
 
-    RadixSort.radixSortDesc(list);
+    List<Integer> unsorted = Arrays.asList(80, 50, 60, 30, 20, 10, 70, 0, 40, 500, 600, 602, 200, 15);
+    List<Integer> expected = Arrays.asList(0, 10, 15, 20, 30, 40, 50, 60, 70, 80, 200, 500, 600, 602);
 
-    Assertions.assertEquals(listOrder[0],list[0]);
-    Assertions.assertEquals(listOrder[listOrder.length/2],list[list.length/2]);
-    Assertions.assertEquals(listOrder[listOrder.length-1],list[list.length-1]);
+    Result actual = sorter.sort(unsorted);
+    int sizeMid = expected.size() / 2;
+
+    assertEquals(expected, actual.list);
+    System.out.println(actual.comparisons + " Vezes que o algoritmo fez comparações");
+  }
+
+  @Test
+  public void radixSortTestDesc() {
+    List<Integer> list = Arrays.asList(80, 50, 60, 30, 20, 10, 70, 0, 40, 500, 600, 602, 200, 15);
+    List<Integer> listOrder = Arrays.asList(602, 600, 500, 200, 80, 70, 60, 50, 40, 30, 20, 15, 10, 0);
+
+    //RadixSort.radixSortDesc(list);
+
+    Result actual = sorter.sort(unsorted);
+    int sizeMid = expected.size() / 2;
+
+    assertEquals(expected, actual.list);
+    System.out.println(actual.comparisons + " Vezes que o algoritmo fez comparações");
   }
 }

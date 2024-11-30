@@ -9,20 +9,17 @@ public class BubbleSort extends SortingAlgorithm {
   @Override
   public Result sort(List<Integer> list) {
     int aux;
-    int comparisonCount = 0;
 
-    for (int i = 0; i < list.size(); i++) {
-      for (int j = 0; j < list.size(); j++) {
-        comparisonCount++;
+    for (int i = 0; i < list.size() - 1; i++) {
+      for (int j = 0; j < list.size() - 1; j++) {
         if (list.get(j) > list.get(j + 1)) {
+          incrementComparisonCount();
           aux = list.get(j);
           list.set(j, list.get(j + 1));
-          list.set(j+1, aux);
+          list.set(j + 1, aux);
         }
       }
     }
-    System.out.println(comparisonCount);
     return new Result(list, comparisonCount);
   }
 }
-

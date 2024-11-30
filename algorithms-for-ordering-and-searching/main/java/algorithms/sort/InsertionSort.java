@@ -14,11 +14,10 @@ public class InsertionSort extends SortingAlgorithm {
       int j = i - 1;
       while (j >= 0 && list.get(j) > key) {
         incrementComparisonCount();
-        list.set(j+1, list.get(j));
-        j--;
+        list.set(j + 1, list.get(j--));
       }
       incrementComparisonCount();
-      list.set(j+1, key);
+      list.set(j + 1, key);
     }
     return new Result(list, comparisonCount);
   }
