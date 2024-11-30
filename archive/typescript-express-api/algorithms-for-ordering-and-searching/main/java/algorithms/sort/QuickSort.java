@@ -12,6 +12,7 @@ public class QuickSort extends SortingAlgorithm {
     int end = list.size() - 1;
 
     if (begin < end) {
+      incrementComparisonCount();
       int partitionIndex = partition(list, begin, end);
 
       sort(list, begin, partitionIndex - 1);
@@ -20,8 +21,9 @@ public class QuickSort extends SortingAlgorithm {
     return new Result(list, comparisonCount);
   }
 
-  private static void sort(List<Integer> list, int begin, int end) {
+  private void sort(List<Integer> list, int begin, int end) {
     if (begin < end) {
+      incrementComparisonCount();
       int partitionIndex = partition(list, begin, end);
 
       sort(list, begin, partitionIndex - 1);
@@ -29,13 +31,14 @@ public class QuickSort extends SortingAlgorithm {
     }
   }
 
-  private static int partition(List<Integer> list, int begin, int end) {
+  private int partition(List<Integer> list, int begin, int end) {
     int pivot = list.get(end);
     int i = (begin - 1);
 
     for (int j = begin; j < end; j++) {
       if (list.get(j) <= pivot) {
         i++;
+        incrementComparisonCount();
 
         int swapTemp = list.get(i);
         list.set(i, list.get(j));

@@ -30,18 +30,4 @@ public class RadixSortUnitTest {
     assertEquals(expected, actual.list);
     System.out.println(actual.comparisons + " Vezes que o algoritmo fez comparações");
   }
-
-  @Test
-  public void radixSortTestDesc() {
-    List<Integer> list = Arrays.asList(80, 50, 60, 30, 20, 10, 70, 0, 40, 500, 600, 602, 200, 15);
-    List<Integer> listOrder = Arrays.asList(602, 600, 500, 200, 80, 70, 60, 50, 40, 30, 20, 15, 10, 0);
-
-    //RadixSort.radixSortDesc(list);
-
-    Result actual = sorter.sort(unsorted);
-    int sizeMid = expected.size() / 2;
-
-    assertEquals(expected, actual.list);
-    System.out.println(actual.comparisons + " Vezes que o algoritmo fez comparações");
-  }
 }
