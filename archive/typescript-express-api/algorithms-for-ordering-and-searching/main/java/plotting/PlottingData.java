@@ -5,11 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler;
+import org.knowm.xchart.style.markers.SeriesMarkers;
 
 public class PlottingData {
   public CategoryChart getChart() {
-
-    // Create Chart
     CategoryChart chart =
         new CategoryChartBuilder()
             .width(800)
@@ -19,25 +18,17 @@ public class PlottingData {
             .yAxisTitle("Number")
             .build();
 
-    // Customize Chart
     chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideNW);
     chart.getStyler().setHasAnnotations(true);
 
-    // Series
-    chart.addSeries(
-        "test 1",
-        Arrays.asList(0, 1, 2, 3, 4),
-        Arrays.asList(4, 5, 9, 6, 5));
+    chart.addSeries("test 1", Arrays.asList(0, 1, 2, 3, 4), Arrays.asList(4, 5, 9, 6, 5));
 
     return chart;
   }
 
   public CategoryChart stickChart() {
-
-    // Create Chart
     CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Stick").build();
 
-    // Customize Chart
     chart.getStyler().setChartTitleVisible(true);
     chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideNW);
     chart.getStyler().setDefaultSeriesRenderStyle(CategorySeries.CategorySeriesRenderStyle.Stick);
@@ -76,28 +67,15 @@ public class PlottingData {
     chart.getStyler().setXAxisLabelRotation(90);
     chart.getStyler().setXAxisLabelRotation(0);
 
-    // Series
-    for (int i = -3; i <= 10; i++) {
-      xData.add(i);
-      yData.add(Math.pow(10, i));
-    }
-    chart.addSeries("10^x", xData, yData);
-    for (int i = -3; i <= 12; i++) {
-      xData.add(i);
-      yData.add(Math.pow(12, i));
-    }
-    chart.addSeries("12^x", xData, yData);
-    for (int i = -3; i <= 14; i++) {
-      xData.add(i);
-      yData.add(Math.pow(14, i));
-    }
-    chart.addSeries("14^x", xData, yData);
-
     return chart;
   }
+
   public XYChart graficoNaoUniforme() {
     List<Integer> xData = new ArrayList<Integer>();
     List<Double> yData = new ArrayList<Double>();
+
+    // Tamanhos da lista correspondentes aos tempos (exemplo)
+    int[] tamanhos = {100, 1000, 10000, 100000}; // Adicione mais tamanhos conforme necessário
 
     XYChart chart =
         new XYChartBuilder()
@@ -105,33 +83,33 @@ public class PlottingData {
             .height(600)
             .title("Comparação de Tempos - Lista Não Uniforme")
             .xAxisTitle("Tamanho da lista")
-            .yAxisTitle("Tempo Medio (segundos)")
+            .yAxisTitle("Tempo Médio (milissegundos)")
             .build();
 
-    chart.getStyler().setChartTitleVisible(true);
     chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideNW);
-    chart.getStyler().setYAxisLogarithmic(true);
-    chart.getStyler().setXAxisLabelRotation(45);
-
-    chart.getStyler().setXAxisLabelAlignment(Styler.TextAlignment.Right);
-    chart.getStyler().setXAxisLabelRotation(90);
-    chart.getStyler().setXAxisLabelRotation(0);
+    chart.getStyler().setDefaultSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
+    chart.getStyler().setYAxisLabelAlignment(Styler.TextAlignment.Right);
+    chart.getStyler().setYAxisDecimalPattern("#.## ms");
+    chart.getStyler().setPlotMargin(0);
+    chart.getStyler().setPlotContentSize(.95);
 
     List<Long> times = ColectionTime.colectionSearchTime();
-    for (int i = 0; i <= times.size()-1; i++) {
-      xData.add(Math.toIntExact(times.get(i)));
-      yData.add((double) Math.toIntExact(times.get(i)));
+
+    for (int i = 0; i < tamanhos.length; i++) {
+      //TODO isso está apenas criando um grafico com o tempo de todos os algoritmos com uma lista de 100 valores
+      //TODO crie um metodo para gerar uma lista de tempo para cada algoritmo individualmente e depois adicione ao yData e depois
+      //TODO para o chart.addSeries()
+      if (i < times.size()) { // Verifica se existe um tempo correspondente
+        xData.add(tamanhos[i]); // Adiciona o tamanho da lista ao eixo X
+        yData.add(times.get(i) / 1_000_000.0); // Converte nanosegundos para milissegundos
+      }
     }
+
     chart.addSeries("Binary Search", xData, yData);
+    chart.addSeries("Exponential Search", xData, yData);
+    chart.addSeries("Interpolation Search", xData, yData);
+    chart.addSeries("Jump Search", xData, yData);
+    chart.addSeries("Ternary Search", xData, yData);
     return chart;
-  }
-
-  public static void main(String[] args) {
-    PlottingData exampleChart = new PlottingData();
-
-    XYChart chartUniforme = exampleChart.graficoUniforme();
-    XYChart chartNotUniforme = exampleChart.graficoNaoUniforme();
-    new SwingWrapper<XYChart>(chartUniforme).displayChart();
-    new SwingWrapper<XYChart>(chartNotUniforme).displayChart();
   }
 }

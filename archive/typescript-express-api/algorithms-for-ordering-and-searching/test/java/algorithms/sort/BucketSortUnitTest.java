@@ -1,4 +1,4 @@
-package test.java.sort;
+package test.java.algorithms.sort;
 
 import main.java.algorithms.base.Result;
 import main.java.algorithms.sort.BucketSort;

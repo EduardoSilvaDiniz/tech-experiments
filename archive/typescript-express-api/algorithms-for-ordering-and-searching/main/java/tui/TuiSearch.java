@@ -1,4 +1,4 @@
-package main.java.algorithms.tui;
+package main.java.tui;
 
 import main.java.algorithms.base.Result;
 import main.java.algorithms.base.Searcher;

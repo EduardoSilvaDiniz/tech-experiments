@@ -1,4 +1,4 @@
-package test.java.search;
+package test.java.algorithms.search;
 
 import main.java.algorithms.search.BinarySearch;
 import org.junit.jupiter.api.Assertions;

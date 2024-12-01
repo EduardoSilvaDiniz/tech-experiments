@@ -1,9 +1,7 @@
-package test.java.sort;
+package test.java.algorithms.sort;
 
 import main.java.algorithms.base.Result;
-import main.java.algorithms.sort.BucketSort;
-import main.java.algorithms.sort.InsertionSort;
-import org.junit.jupiter.api.Assertions;
+import main.java.algorithms.sort.BubbleSort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,20 +10,21 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class InsertionSortUnitTest {
-  private InsertionSort sorter;
+public class BubbleSortUnitTest {
+  private BubbleSort sorter;
 
   @BeforeEach
   public void setUp() {
-    sorter = new InsertionSort();
+    sorter = new BubbleSort();
   }
 
   @Test
-  public void insertionSortTest() {
+  public void bubbleSortTest() {
 
     List<Integer> unsorted = Arrays.asList(80,50,60,30,20,10,70,0,40,500,600,602,200,15);
     List<Integer> expected = Arrays.asList(0,10,15,20,30,40,50,60,70,80,200,500,600,602);
 
+    sorter = new BubbleSort();
     Result actual = sorter.sort(unsorted);
     int sizeMid = expected.size() / 2;
 

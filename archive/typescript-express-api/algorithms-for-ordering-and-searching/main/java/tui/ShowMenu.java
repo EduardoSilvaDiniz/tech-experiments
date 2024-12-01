@@ -1,4 +1,4 @@
-package main.java.algorithms.tui;
+package main.java.tui;
 
 public class ShowMenu {
   public static void startMenu() {
