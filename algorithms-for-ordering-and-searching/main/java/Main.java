@@ -4,32 +4,36 @@ import main.java.algorithms.tui.ShowMenu;
 import main.java.algorithms.tui.TuiSearch;
 import main.java.algorithms.tui.TuiSort;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    int choice, target;
+  public static void main(String[] args) throws IOException {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    Integer choice, target;
     String input;
 
     do {
       ShowMenu.startMenu();
-      choice = scanner.nextInt();
+      choice = Integer.parseInt(in.readLine());
       switch (choice) {
         case 1:
           ShowMenu.searchMenu();
-          choice = scanner.nextInt();
+          choice = Integer.parseInt(in.readLine());
           System.out.println("Digite os valores da lista (separados por espaço):");
-          input = scanner.nextLine();
+          input = in.readLine();
           System.out.println("Digite o valor a ser procurado:");
-          target = scanner.nextInt();
+          target = Integer.parseInt(in.readLine());
           TuiSearch.tui(choice, input, target);
+          break;
         case 2:
           ShowMenu.sortMenu();
-          choice = scanner.nextInt();
+          choice = Integer.parseInt(in.readLine());
           System.out.print("Digite os valores a serem ordenados (separados por espaço): ");
-          input = scanner.nextLine();
+          input = in.readLine();
           TuiSort.tui(choice, input);
+          break;
         case 0:
           System.out.println("Saindo...");
           break;

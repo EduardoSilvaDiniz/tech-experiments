@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TuiSort {
-  public static void tui(int choice, String input){
+  public static void tui(Integer choice, String input){
     List<Integer> list = new ArrayList<>();
 
     String[] values = input.split(" ");
