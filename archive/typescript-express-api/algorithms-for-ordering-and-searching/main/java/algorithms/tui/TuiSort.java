@@ -6,7 +6,6 @@ import main.java.algorithms.sort.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class TuiSort {
   public static void tui(Integer choice, String input){
