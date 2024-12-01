@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 public class Main {
   public static void main(String[] args) throws IOException {
     BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-    Integer choice, target;
+    int choice, target;
     String input;
 
     do {
