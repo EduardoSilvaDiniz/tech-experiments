@@ -7,7 +7,7 @@ import main.java.algorithms.search.*;
 import java.util.*;
 
 public class TuiSearch {
-  public static void tui(Integer choice, String input, Integer target){
+  public static void tui(int choice, String input, int target){
     List<Integer> list = new ArrayList<>();
 
     if (!input.trim().isEmpty()) {
