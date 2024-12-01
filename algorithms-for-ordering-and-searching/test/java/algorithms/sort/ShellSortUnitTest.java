@@ -1,8 +1,7 @@
-package test.java.sort;
+package test.java.algorithms.sort;
 
 import main.java.algorithms.base.Result;
-import main.java.algorithms.sort.InsertionSort;
-import main.java.algorithms.sort.MergeSort;
+import main.java.algorithms.sort.ShellSort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,16 +10,17 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MergeSortUnitTest {
-  private MergeSort sorter;
+public class ShellSortUnitTest {
+
+  private ShellSort sorter;
 
   @BeforeEach
   public void setUp() {
-    sorter = new MergeSort();
+    sorter = new ShellSort();
   }
 
   @Test
-  public void insertionSortTest() {
+  public void shellSortTest() {
 
     List<Integer> unsorted = Arrays.asList(80,50,60,30,20,10,70,0,40,500,600,602,200,15);
     List<Integer> expected = Arrays.asList(0,10,15,20,30,40,50,60,70,80,200,500,600,602);

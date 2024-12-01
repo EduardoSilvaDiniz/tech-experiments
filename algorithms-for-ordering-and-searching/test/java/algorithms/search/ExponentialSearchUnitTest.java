@@ -1,6 +1,5 @@
-package test.java.search;
+package test.java.algorithms.search;
 
-import main.java.algorithms.search.BinarySearch;
 import main.java.algorithms.search.ExponentialSearch;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
