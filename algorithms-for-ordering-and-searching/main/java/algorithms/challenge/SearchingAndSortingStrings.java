@@ -1,48 +1,47 @@
 package main.java.algorithms.challenge;
 
+import org.junit.jupiter.params.aggregator.ArgumentAccessException;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SearchingAndSortingStrings {
 
-  public static void mergeSortStrings(List<String> arr) {
-    List<String> listLeft = new ArrayList<>();
-    List<String> listRight = new ArrayList<>();
-    int i = 0, j = 0, k = 0;
+  public static List<String> mergeSortStrings(List<String> arr) {
+    if (arr.size() <= 1) return new ArrayList<>(arr);
 
+    int mid = arr.size() / 2;
+    List<String> listLeft = mergeSortStrings(arr.subList(0, mid));
+    List<String> listRight = mergeSortStrings(arr.subList(mid, arr.size()));
 
-    if (arr.size() > 1) {
-      int mid = arr.size() / 2;
-      listLeft = arr.subList(0, mid);
-      listRight = arr.subList(mid, arr.size());
+    return merge(listLeft, listRight);
+  }
 
-      mergeSortStrings(listLeft);
-      mergeSortStrings(listRight);
+  public static List<String> merge(List<String> left, List<String> right) {
+    List<String> merged = new ArrayList<>();
+    int i = 0, j = 0;
 
-      while (i < listLeft.size() && j < listRight.size()) {
-        if (listLeft.get(i).compareToIgnoreCase(listRight.get(j)) < 0) {
-          arr.set(k, listLeft.get(i));
-          i++;
-        } else {
-          arr.set(k, listLeft.get(j));
-          j++;
-        }
-        k++;
-      }
-
-      while (i < listLeft.size()) {
-        arr.set(k, listLeft.get(i));
+    while (i < left.size() && j < right.size()) {
+      if (left.get(i).compareToIgnoreCase(right.get(j)) < 0) {
+        merged.add(left.get(i));
         i++;
-        k++;
-      }
-
-      while (j < listRight.size()) {
-        arr.set(k, listRight.get(j));
+      } else {
+        merged.add(right.get(j));
         j++;
-        k++;
       }
     }
+
+    while (i < left.size()) {
+      merged.add(left.get(i));
+      i++;
+    }
+
+    while (j < right.size()) {
+      merged.add(right.get(j));
+      j++;
+    }
+
+    return merged;
   }
 
   public static List<String> quickSortStrings(List<String> arr) {
@@ -78,6 +77,6 @@ public class SearchingAndSortingStrings {
       else if (comparison < 0) low = mid + 1;
       else high = mid - 1;
     }
-    return -1;
+    throw new ArgumentAccessException("word not found");
   }
 }

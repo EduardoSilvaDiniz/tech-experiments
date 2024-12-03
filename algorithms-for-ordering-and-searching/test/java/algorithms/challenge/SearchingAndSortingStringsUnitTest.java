@@ -48,30 +48,28 @@ public class SearchingAndSortingStringsUnitTest {
           "Livro",
           "Montanha",
           "Música",
+          "Oceano",
           "Pintura",
           "Relógio",
           "Sorriso",
-          "Viagem",
-          "Oceano");
+          "Viagem");
 
   @Test
   public void searchAndSortingStrings() {
-    //TODO está com problemas com tamanho da lista
-    mergeSortStrings(listToSort);
-    assertEquals(listOrder, listToSort);
+    List<String> actual = mergeSortStrings(listToSort);
+    assertEquals(listOrder, actual);
   }
 
   @Test
   public void orderListQuickSort() {
-    //TODO está com problemas com tamanho da lista
-    quickSortStrings(listToSort);
-    assertEquals(listOrder, listToSort);
+    List<String> actual = quickSortStrings(listToSort);
+    assertEquals(listOrder, actual);
   }
 
   @Test
   public void searchWordBinarySearch() {
-    String target = "Mango";
+    String target = "Café";
     int result = binarySearchStrings(listOrder, target);
-    Assertions.assertEquals(3, result);
+    Assertions.assertEquals(target, listOrder.get(result));
   }
 }

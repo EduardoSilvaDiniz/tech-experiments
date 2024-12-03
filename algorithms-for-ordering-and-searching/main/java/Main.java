@@ -8,8 +8,7 @@ public class Main {
   public static void main(String[] args) {
 
     PlottingData exampleChart = new PlottingData();
-
-    XYChart chartNotUniforme = exampleChart.graficoNaoUniforme();
-    new SwingWrapper<XYChart>(chartNotUniforme).displayChart();
+    XYChart chartAlgorithmsCompletionTime = exampleChart.chartAlgorithmsCompletionTime();
+    new SwingWrapper<XYChart>(chartAlgorithmsCompletionTime).displayChart();
   }
 }
