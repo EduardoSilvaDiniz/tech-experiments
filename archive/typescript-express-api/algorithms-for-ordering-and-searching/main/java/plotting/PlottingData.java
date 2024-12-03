@@ -1,6 +1,5 @@
 package main.java.plotting;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -8,8 +7,8 @@ import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler;
 
 public class PlottingData {
-  private final List<Integer> sizeList = Arrays.asList(100, 1000, 10000);
-  List<String> algorithms =
+  private final List<Integer> sizeList = Arrays.asList(1000, 3000, 6000, 8000, 10000);
+  private final List<String> algorithms =
       Arrays.asList(
           "BinarySearch",
           "ExponentialSearch",
@@ -17,52 +16,30 @@ public class PlottingData {
           "JumpSearch",
           "TernarySearch");
 
-  public XYChart graficoNaoUniforme() {
-    List<Integer> xData = new ArrayList<Integer>();
-    List<Double> yData = new ArrayList<Double>();
-
+  public XYChart chartAlgorithmsCompletionTime() {
     XYChart chart =
         new XYChartBuilder()
             .width(800)
             .height(600)
-            .title("Matlab Theme")
+            .title("Comparação de tempo de exeucação - Lista 1.000 ... 10.000 elementos")
             .xAxisTitle("Tamanho da Lista")
-            .yAxisTitle("Tempo Medio")
+            .yAxisTitle("Tempo Médio (milissegundos)")
             .build();
 
-    // Customize Chart
-    chart.getStyler().setPlotGridLinesVisible(false);
-    chart.getStyler().setXAxisTickMarkSpacingHint(100);
-    // XYChart chart =
-    //    new XYChartBuilder()
-    //        .width(800)
-    //        .height(600)
-    //        .title("Comparação de Tempos - Lista de 100...10.000")
-    //        .xAxisTitle("Tamanho da lista")
-    //        .yAxisTitle("Tempo Médio (milissegundos)")
-    //        .build();
-
-    chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideNW);
+    chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideNE);
     chart.getStyler().setDefaultSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
-    chart.getStyler().setYAxisLabelAlignment(Styler.TextAlignment.Left);
     chart.getStyler().setYAxisDecimalPattern("#.## ms");
     chart.getStyler().setPlotMargin(0);
     chart.getStyler().setPlotContentSize(.95);
 
-    HashMap<String, List<Long>> executationTimes = ColectionTime.colectionSearchTime();
+    HashMap<String, List<Long>> executionTimes = ColectionTime.colectionSearchTime();
 
     for (String algorithm : algorithms) {
-      for (int i = 0; i < sizeList.size(); i++) {
-        xData.add(sizeList.get(i));
-        yData.add(executationTimes.get(algorithm).get(i) / 1000000.0);
-        System.out.println(
-            algorithm
-                + " X: "
-                + sizeList.get(i)
-                + " Y: "
-                + executationTimes.get(algorithm).get(i) / 1000000.0);
+      List<Long> times = executionTimes.get(algorithm);
+      if (times != null) {
+        List<Double> yData = times.stream().map(time -> time / 1_000_000.0).toList();
+        chart.addSeries(algorithm, sizeList, yData);
       }
-      chart.addSeries(algorithm, xData, yData);
     }
     return chart;
   }
