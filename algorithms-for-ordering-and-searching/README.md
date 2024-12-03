@@ -1,4 +1,10 @@
-### Lista de Atividades: Estrutura de dados 2  Professor Mayck Cipriano
+# Projeto da Faculdade
+- Disciplina: Estrutura de dados 2 
+- Professor: Mayck Cipriano
+- Semestre: 4º Semestre
+- Projeto: Algoritmos de ordenação e busca
+- Linguagem: Java
+- Bibliotecas: Junit 5, xchart 3
 
 ## 1. Binary Search
 [Binary Search](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/search/BinarySearch.java)
