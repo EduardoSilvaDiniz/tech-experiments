@@ -21,14 +21,7 @@ public class ShellSortUnitTest {
 
   @Test
   public void shellSortTest() {
-
-    List<Integer> unsorted = Arrays.asList(80,50,60,30,20,10,70,0,40,500,600,602,200,15);
-    List<Integer> expected = Arrays.asList(0,10,15,20,30,40,50,60,70,80,200,500,600,602);
-
-    Result actual = sorter.sort(unsorted);
-    int sizeMid = expected.size() / 2;
-
-    assertEquals(expected, actual.list);
-    System.out.println(actual.comparisons + " Vezes que o algoritmo fez comparações");
+    System.out.println("Shell Sort");
+    DefaultTest.bigListAndShowComparetionAndTime(sorter);
   }
 }
