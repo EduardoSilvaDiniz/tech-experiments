@@ -2,6 +2,7 @@
 
 ## 1. Binary Search
 [Binary Search](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/search/BinarySearch.java)
+
 #### Por que a lista deve estar ordenada para que o Binary Search funcione corretamente
 ##### Exemplo com Lista Ordenada
 Lista: `[1, 3, 5, 7, 9, 11]`  
@@ -20,6 +21,7 @@ Procurando o número **7**:
 ---
 ## 2. Interpolation Search
 [InterpolationSearch](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/search/ExponentialSearch.java)
+
 #### Comparação entre Interpolation Search e Binary Search
 
 | **Lista**                   | **Algoritmo**            | **Tamanho da Lista** | **Intervalo de Elementos**              | **Tempo de Execução (ms)** | **Número de Comparações** |
@@ -129,7 +131,7 @@ O Radix Sort é um algoritmo de ordenação que lida com bases diferentes manipu
 ## 12. Comparação de Algoritmos de Busca
 
 #### comparativa dos tempos de execução dos algoritmos de pesquisa em listas de tamanhos diferentes.
-![[Lista para entregar_20241203090506522.webp|699]]
+![](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/.github/cart_search.gif)
 
 ---
 ## 13. Comparação de Algoritmos de Ordenação
@@ -176,25 +178,28 @@ O Radix Sort é um algoritmo de ordenação que lida com bases diferentes manipu
 ---
 
 ## 15. Busca e Ordenação em Strings
+[SearchingAndSortingStrings](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/challenge/SearchingAndSortingStrings.java)
+
 Adapte os algoritmos de ordenação (Merge Sort e Quick Sort) para ordenar palavras em ordem alfabética.
 Utilize Binary Search para verificar se uma palavra específica está presente em uma lista de palavras ordenadas.
-[SearchingAndSortingStrings](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/challenge/SearchingAndSortingStrings.java)
+
 
 ---
 
 ## 16. Aplicação Prática de Busca
-Use o Binary Search para procurar um livro específico por ISBN em uma lista ordenada de registros de biblioteca.
 [BinarySearchBooks](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/challenge/BinarySearchBooks.java)
+
+Use o Binary Search para procurar um livro específico por ISBN em uma lista ordenada de registros de biblioteca.
 
 ---
 ## 17. Busca e Ordenação em Dados Reais
-Implemente Bucket Sort para ordenar as notas de uma turma de alunos, classificadas entre 0 e 100. Em seguida, utilize o Interpolation Search para encontrar um aluno com uma nota específica
 [SearchingAndSortingStrings](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/challenge/SearchingAndSortingStrings.java)
+
+Implemente Bucket Sort para ordenar as notas de uma turma de alunos, classificadas entre 0 e 100. Em seguida, utilize o Interpolation Search para encontrar um aluno com uma nota específica
+
 
 ---
 ## 18. Ordenação Estável e Instável
-
-#### Algoritmos de Ordenação Estáveis
 
 ##### Estáveis
 1. Merge Sort
@@ -234,10 +239,11 @@ Implemente Bucket Sort para ordenar as notas de uma turma de alunos, classificad
 ---
 ## 19. Análise Visual dos Algoritmos
 - gráficos para ilustrar como os algoritmos de ordenação Quick Sort reorganizam os elementos a cada etapa.
-  ![/../.github/quick_sort_step_by_step.webp]
+  ![](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/.github/quick_sort_step_by_step.gif)
 
 ---
 ## 20. Desafios de Implementação
 [MainMenu](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/tui/MainMenu.java)
+
 Crie um programa que permita ao usuário escolher um algoritmo de busca e ordenação para ordenar uma lista ou procurar um elemento, oferecendo comparações automáticas entre os métodos.
 
