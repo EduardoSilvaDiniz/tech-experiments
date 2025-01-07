@@ -2,8 +2,11 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+<<<<<<< HEAD
 .idea
 tech-experiments.iml
+=======
+>>>>>>> 2bfa7904beaaf462d01e9c81ed8c5a14792974a4
 
 ### Eclipse ###
 .apt_generated
@@ -29,6 +32,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+<<<<<<< HEAD
 
 .cache/
 build/
@@ -42,3 +46,5 @@ a.out
 build
 
 
+=======
+>>>>>>> 2bfa7904beaaf462d01e9c81ed8c5a14792974a4
