@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
@@ -42,3 +43,10 @@ a.out
 build
 
 
+=======
+node_modules/
+eslint.config.mjs
+package-lock.json
+package.json
+go.sum
+>>>>>>> 024b346b4aaf19805905cbd790a96258764c0263
