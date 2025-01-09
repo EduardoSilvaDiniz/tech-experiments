@@ -1,0 +1,3 @@
+# Arquivado
+não quis apagar meus antigos projetos, mesmo não funcionando ainda prefiro guardar é a minha forma de arquivar minha evolução.
+meu objetivo para 2025 é tornar o java a minha linguagem principal e quero converter todos os códigos arquivado em java, não sei se vou conseguir concluir este objetivo mas vou me esforçar para tentar...
