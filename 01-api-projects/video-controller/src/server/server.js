@@ -44,6 +44,4 @@ server.delete('/videos/:id', (request, reply) => {
 
 })
 
-server.listen({
-    port: 3333
-})
+export { server }
