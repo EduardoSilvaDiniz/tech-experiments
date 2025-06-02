@@ -1,0 +1,22 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "main.c"
+    ],
+    "directory": "/mnt/win_linux/Projetos/binary-tree",
+    "file": "/mnt/win_linux/Projetos/binary-tree/main.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "src/binary_tree.c"
+    ],
+    "directory": "/mnt/win_linux/Projetos/binary-tree",
+    "file": "/mnt/win_linux/Projetos/binary-tree/src/binary_tree.c"
+  }
+]
