@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	f "fmt"
 	"os"
 	"os/exec"
@@ -111,7 +112,6 @@ func addTask(head *task, newTask *task) {
 
 func ShowTasks(head *task) {
 	curr := head.next
-	var input string
 
 	f.Printf("\n")
 	for curr != nil {
@@ -120,8 +120,9 @@ func ShowTasks(head *task) {
 	}
 	f.Printf("Nil \n")
 
+	reader := bufio.NewReader(os.Stdin)
 	f.Print("aperte enter para continuar")
-	f.Scan(&input)
+	reader.ReadString('\n')
 }
 
 func getFirstTask(head *task) *task {
@@ -149,7 +150,6 @@ func addToCompletedList(head *task, firstTask *task) {
 
 func seeAllCompletedList(head *task) {
 	curr := head.next
-	var input string
 
 	f.Printf("\n")
 	for curr != nil {
@@ -158,21 +158,22 @@ func seeAllCompletedList(head *task) {
 	}
 	f.Printf("Nil \n")
 
+	reader := bufio.NewReader(os.Stdin)
 	f.Print("aperte enter para continuar")
-	f.Scan(&input)
+	reader.ReadString('\n')
 }
 
 func removeFromCompletedListByItsId(head *task, id int) *task {
-	if head == nil {
+	if head == nil || head.next == nil {
 		return nil
 	}
 
-	curr := head.next
+	curr := head
 
 	for curr.next != nil {
 		if curr.next.id == id {
 			swapTask := curr.next
-			curr.next = swapTask.next
+			curr.next = curr.next.next
 			swapTask.next = nil
 			return swapTask
 		}
@@ -183,11 +184,12 @@ func removeFromCompletedListByItsId(head *task, id int) *task {
 }
 
 func pushToDraftStack(head *task, task *task) {
-	if head == nil {
+	if head == nil || task == nil {
 		return
 	}
-	curr := head
+	task.next = nil
 
+	curr := head
 	for curr.next != nil {
 		curr = curr.next
 	}
@@ -196,7 +198,6 @@ func pushToDraftStack(head *task, task *task) {
 
 func seeAllDraftStack(head *task) {
 	curr := head.next
-	var input string
 
 	f.Printf("\n")
 	for curr != nil {
@@ -205,21 +206,27 @@ func seeAllDraftStack(head *task) {
 	}
 	f.Printf("Nil \n")
 
+	reader := bufio.NewReader(os.Stdin)
 	f.Print("aperte enter para continuar")
-	f.Scan(&input)
-
+	reader.ReadString('\n')
 }
 
 func popFromDraftStack(head *task) *task {
-	if head == nil {
+	if head == nil || head.next == nil {
 		return nil
 	}
 
-	curr := head.next
+	if head.next.next == nil {
+		swapTask := head.next
+		head.next = nil
+		return swapTask
+	}
 
+	curr := head.next
 	for curr.next.next != nil {
 		curr = curr.next
 	}
+
 	swapTask := curr.next
 	curr.next = nil
 
@@ -227,11 +234,13 @@ func popFromDraftStack(head *task) *task {
 }
 
 func putToPendingQueue(head *task, task *task) {
-	if head == nil {
+	if head == nil || task == nil {
 		return
 	}
 
-	curr := head.next
+	task.next = nil
+
+	curr := head
 
 	for curr.next != nil {
 		curr = curr.next
