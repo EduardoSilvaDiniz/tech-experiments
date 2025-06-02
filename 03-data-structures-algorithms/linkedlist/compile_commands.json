@@ -1,0 +1,22 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "main.c"
+    ],
+    "directory": "/mnt/win_linux/Projetos/linkedlist",
+    "file": "/mnt/win_linux/Projetos/linkedlist/main.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "src/linked_list.c"
+    ],
+    "directory": "/mnt/win_linux/Projetos/linkedlist",
+    "file": "/mnt/win_linux/Projetos/linkedlist/src/linked_list.c"
+  }
+]
