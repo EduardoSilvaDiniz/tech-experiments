@@ -1,0 +1,32 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "main.c"
+    ],
+    "directory": "/mnt/win_linux/Projetos/tech-experiments/03-data-structures-algorithms/exponential-search",
+    "file": "/mnt/win_linux/Projetos/tech-experiments/03-data-structures-algorithms/exponential-search/main.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "src/binary_search.c"
+    ],
+    "directory": "/mnt/win_linux/Projetos/tech-experiments/03-data-structures-algorithms/exponential-search",
+    "file": "/mnt/win_linux/Projetos/tech-experiments/03-data-structures-algorithms/exponential-search/src/binary_search.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Iinclude",
+      "src/exponential_search.c"
+    ],
+    "directory": "/mnt/win_linux/Projetos/tech-experiments/03-data-structures-algorithms/exponential-search",
+    "file": "/mnt/win_linux/Projetos/tech-experiments/03-data-structures-algorithms/exponential-search/src/exponential_search.c"
+  }
+]
