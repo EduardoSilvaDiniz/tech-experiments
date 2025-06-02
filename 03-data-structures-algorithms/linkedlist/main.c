@@ -1,14 +1,15 @@
 #include "linked_list.h"
-#include <stdio.h>
-int main() {
-	Node* head = new_node(5);
-	insert_end(head, 6);
-	insert_end(head, 7);
-	insert_end(head, 8);
-	insertHalf(head, 99, 2);
-	removeByVal(head, 99);
+#include "sort.h"
 
-	traverse(head);
-	printf("%d\n", get_node(head, 2)->data);
-	return 0;
+int main() {
+  Node *head = create_node(5);
+  head = insert_to_end(head, 6);
+  head = insert_to_end(head, 8);
+  head = insert_to_index(head, 99, 2);
+  head = insert_to_index(head, 98, 1);
+  head = insert_to_end(head, 7);
+
+	sort(&head, 6);
+  traverse(head);
+  return 0;
 }

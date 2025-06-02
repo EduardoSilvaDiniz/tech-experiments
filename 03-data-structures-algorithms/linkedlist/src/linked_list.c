@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Node *new_node(int data) {
+Node *create_node(int value) {
   Node *node = malloc(sizeof(Node));
 
   if (node == NULL) {
@@ -10,7 +10,8 @@ Node *new_node(int data) {
     free(node);
     return NULL;
   }
-  node->data = data;
+  node->data = value;
+  node->next = NULL;
   return node;
 }
 
@@ -25,6 +26,16 @@ void traverse(Node *head) {
   traverse(head->next);
 }
 
+int search_data(Node *head, int data) {
+  if (head == NULL) {
+    return -1;
+  } else if (head->data == data) {
+    return head->data;
+  } else {
+    return search_data(head->next, data);
+  }
+}
+
 int length(Node *head) {
   if (head == NULL)
     return 0;
@@ -33,168 +44,108 @@ int length(Node *head) {
     return 1 + length(head->next);
 }
 
-Node *swap(Node *ptr1, Node *ptr2) {
-  Node *tmp = ptr2->next;
-  ptr2->next = ptr1;
-  ptr1->next = tmp;
-  return ptr2;
-}
-
-Node *sort(Node **head, int count) {
-  Node **h = NULL;
-  int swapped;
-
-  for (int i = 0; i <= count; i++) {
-    h = head;
-    swapped = 0;
-    for (int j = 0; j < count - i - 1; j++) {
-      Node *p1 = *h;
-      Node *p2 = p1->next;
-      if (p1->data > p2->data) {
-        *h = swap(p1, p2);
-        swapped = 1;
-      }
-      h = &(*h)->next;
-    }
-    if (swapped == 0)
-      break;
+Node *change_data_by_id(Node *head, int value, int index) {
+  if (head == NULL) {
+    return head;
+  } else if (index <= 0) {
+    head->data = value;
+    return head;
+  } else {
+    head->next = change_data_by_id(head->next, value, index - 1);
+    return head;
   }
 }
 
-void changeNodeVal(Node *head, int n, int value) {
-  Node *current = head;
-  for (int i = 0; i < n; i++)
-    current = current->next;
-
-  current->data = value;
-}
-Node* get_node(Node *head, int n) {
-  if (head == NULL) {
+Node *get_node(Node *head, int index) {
+  if (head == NULL)
     return NULL;
+  else if (index <= 0)
+    return head;
+  else
+    return get_node(head->next, index - 1);
+}
 
-  } else if (n <= 0) {
+Node *insert_to_start(Node *head, int value) {
+  if (head != NULL)
     return head;
 
+  Node *new_head = create_node(value);
+  new_head->next = head;
+  return new_head;
+}
+
+Node *insert_to_index(Node *head, int value, int index) {
+  if (head == NULL) {
+    return head;
+  } else if (index <= 0) {
+    Node *new_node = create_node(value);
+    new_node->next = head;
+    return new_node;
   } else {
-    return get_node(head->next, n - 1);
+    head->next = insert_to_index(head->next, value, index - 1);
+    return head;
   }
 }
 
-int insertHead(Node **head, int value) {
-  if (*head != NULL)
-    return -1;
-
-  Node *newNode = malloc(sizeof(Node));
-  newNode->data = value;
-  newNode->next = *head;
-  *head = newNode;
-  return newNode->data;
-}
-
-int insertHalf(Node *head, int value, int n) {
+Node *insert_to_end(Node *head, int value) {
   if (head == NULL)
-    return -1;
+    return create_node(value);
 
-  Node *current = head;
-
-  for (int i = 0; i < n; i++)
-    current = current->next;
-
-  Node *newNode = malloc(sizeof(Node));
-
-  newNode->data = value;
-  newNode->next = current->next;
-  current->next = newNode;
-  return newNode->data;
-}
-
-Node *insert_end(Node *head, int data) {
-  if (head == NULL)
-    return new_node(data);
-
-  head->next = insert_end(head->next, data);
+  head->next = insert_to_end(head->next, value);
   return head;
 }
 
-int removeFistNode(Node **head) {
-  if (*head == NULL)
-    return -1;
+Node *remove_first_node(Node *head) {
+  if (head == NULL)
+    return head;
 
-  int retval = -1;
-  Node *nextNode = NULL;
+  Node *next_node = head->next;
+  free(head);
 
-  nextNode = (*head)->next;
-  retval = (*head)->data;
-  free(*head);
-  *head = nextNode;
-
-  return retval;
+  return next_node;
 }
 
-int removeLastNode(Node *head) {
-  int retval = 0;
-
+Node *remove_last_node(Node *head) {
   if (head->next == NULL) {
-    retval = head->data;
     free(head);
-    return retval;
+    return NULL;
+  } else {
+    head->next = remove_last_node(head->next);
+    return head;
   }
-
-  Node *current = head;
-  while (current->next->next != NULL)
-    current = current->next;
-
-  retval = current->next->data;
-  free(current->next);
-  current->next = NULL;
-  return retval;
 }
 
-int removeByIndex(Node **head, int n) {
-  int retval = 0;
-
-  if (n == 0)
-    return removeFistNode(head);
-
-  Node *current = *head;
-
-  for (int i = 0; i < n - 1; i++) {
-    if (current->next == NULL)
-      return -1;
-    current = current->next;
+Node *remove_by_index(Node *head, int index) {
+  if (head == NULL) {
+    return head;
+  } else if (index <= 0) {
+    Node *temp_next = head->next;
+    free(head);
+    return temp_next;
+  } else {
+    head->next = remove_by_index(head->next, index - 1);
+    return head;
   }
-  if (current->next == NULL)
-    return -1;
-
-  Node *tempNode = current->next;
-  retval = tempNode->data;
-  current->next = tempNode->next;
-  free(tempNode);
-  return retval;
 }
 
-int removeByVal(Node **head, int value) {
-  int retval = 0;
-  Node *current = *head;
-  while (current->next->data != value)
-    current = current->next;
-
-  Node *tempNode = current->next;
-  retval = tempNode->data;
-  current->next = tempNode->next;
-  free(tempNode);
-  return retval;
+Node *remove_by_data(Node *head, int value) {
+  if (head == NULL) {
+    return head;
+  } else if (head->data == value) {
+    Node *temp_next = head->next;
+    free(head);
+    return temp_next;
+  } else {
+    head->next = remove_by_data(head->next, value);
+    return head;
+  }
 }
 
-Node *deleteListNodes(Node *head) {
-  Node *current = head;
-  Node *tmp;
-  while (current != NULL) {
-    tmp = current->next;
-    current->data = 0;
-    current->next = NULL;
-    current = tmp;
-  }
-  Node *newHead = NULL;
-  return newHead;
+Node *free_linked(Node *head) {
+  if (head->next != NULL) {
+    head->next = free_linked(head->next);
+    free(head);
+    return NULL;
+  } else
+    return head;
 }

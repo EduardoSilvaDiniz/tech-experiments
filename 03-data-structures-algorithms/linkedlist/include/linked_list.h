@@ -6,21 +6,19 @@ typedef struct Node {
   struct Node *next;
 } Node;
 
-Node *new_node(int data);
-void traverse(Node *head);
-int length(Node *head);
-Node *deleteListNodes(Node *head);
-Node *sort(Node **head, int count);
-Node *swap(Node *ptr1, Node *ptr2);
-int insertHalf(Node *head, int value, int index);
-int insertHead(Node **head, int value);
-Node *insert_end(Node *head, int data);
-int removeByIndex(Node **head, int index);
-int removeByVal(Node **head, int value);
-int removeFistNode(Node **head);
-int removeLastNode(Node *head);
+Node *change_data_by_id(Node *head, int value, int index);
+Node *create_node(int data);
+Node *free_linked(Node *head);
 Node *get_node(Node *head, int index);
-int sizeTail(Node *head);
-void changeNodeVal(Node *head, int index, int value);
+Node *insert_to_end(Node *head, int data);
+Node *insert_to_index(Node *head, int value, int index);
+Node *insert_to_start(Node *head, int value);
+Node *remove_by_data(Node *head, int value);
+Node *remove_by_index(Node *head, int index);
+Node *remove_first_node(Node *head);
+Node *remove_last_node(Node *head);
+int length(Node *head);
+int search_data(Node *head, int data);
+void traverse(Node *head);
 
 #endif
