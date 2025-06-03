@@ -1,30 +1,28 @@
-## Contents
-- [Algorithm](#algorithm)
-   - [Search](#search)
-- [Data Structures](#data-structures)
-- [APIs](#apis)
-## Algorithm
-### Search
-- [Binary Search](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/search/BinarySearch.java)
-- [Interpolation Search](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/search/ExponentialSearch.java)
-- [Jump Search](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/search/JumpSearch.java)
-- [Exponential Search](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/search/ExponentialSearch.java)
-- [Ternary Search](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/search/TernarySearch.java)
-### Sort
-- [Quick Sort](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/sort/QuickSort.java)
-- [Shell Sort](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/sort/ShellSort.java)
-- [Merge Sort](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/sort/MergeSort.java)
-- [Selection Sort](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/sort/SelectionSort.java)
-- [Bucket Sort](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/sort/BucketSort.java)
-- [Radix Sort](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/algorithms-for-ordering-and-searching/main/java/algorithms/sort/RadixSort.java)
-### Others
-- [Malloc](https://github.com/EduardoSilvaDiniz/tech-experiments/blob/main/my-malloc.c) - malloc step by step.
-## Data Structures
-- [Linked List](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/linkedlist) - (needs refactoring).
-- [Hash Table](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/hashtable) - (needs refactoring).
-- [Binary Tree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/binary-tree) - (needs refactoring).
-- [Avl Tree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/binary-tree) - (needs refactoring).
-- [Red Black Tree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/binary-tree) - (needs refactoring).
-## APIs
-- [Restful Tweats](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/api-rest) - Tweet controller (needs refactoring).
-
+# APIs
+- [Tweat Controller](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/01-api-projects/api-tweet)
+- [Menu Login](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/01-api-projects/menu-login)
+- [Video Controller](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/01-api-projects/video-controller)
+# Data Structures And Algorithms
+## Structures
+- [Linked List](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/02-data-structures-algorithms/linkedlist)
+- [Binary Tree](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/02-data-structures-algorithms/binary-tree)
+## Algorithms
+- [Exponential Search](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/02-data-structures-algorithms/exponential-search)
+- [Mentoring Dstask Golang](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/02-data-structures-algorithms/mentoring-dstask)
+# Faculty Projects
+- [Algorithms For Ordering And Searching](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/03-faculty-projects/algorithms-for-ordering-and-searching)
+- [Faculty-System](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/03-faculty-projects/faculty-system)
+- [mentoring-dstask](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/03-faculty-projects/mentoring-dstask)
+- [tic-tac-toe-game](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/03-faculty-projects/tic-tac-toe-game)
+# Systems And Toys
+- [Design Patterns](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/04-systems-and-toys/design-patterns)
+- [Go Pointer](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/04-systems-and-toys/go-pointer)
+- [Multithreading](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/04-systems-and-toys/multithreading)
+# Solving Algorithm Problems
+- [Hacker Rank](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/05-solving-algorithm-problems/hackerrank)
+- [Leet Code](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/05-solving-algorithm-problems/leetcode)
+# Course Exercises
+- [Assembly Blau Araujo](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/06-course-exercises/assembly-blau_araujo)
+- [Golang Vkorbes](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/06-course-exercises/golang-vkorbes)
+- [Php Leonardo Moura Leitao](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/06-course-exercises/php-leonardo_moura_leitao)
+- [Shellscript Slackjeff](https://github.com/EduardoSilvaDiniz/tech-experiments/tree/main/06-course-exercises/shell_script-slackjeff)
