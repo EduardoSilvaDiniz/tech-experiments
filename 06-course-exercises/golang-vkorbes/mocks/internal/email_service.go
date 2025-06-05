@@ -1,7 +1,7 @@
 package internal
 
 type EmailSerivce interface {
-	EnviarEmail(destinatario string, conteudo string) error
+	EnviarEmail(destinatario, conteudo string) error
 }
 
 type PedidoService struct {

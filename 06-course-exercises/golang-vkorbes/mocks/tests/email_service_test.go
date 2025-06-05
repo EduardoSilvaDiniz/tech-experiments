@@ -9,7 +9,7 @@ type EmailServiceMock struct {
 	Enviou bool
 }
 
-func (e *EmailServiceMock) EnviarEmail(destinatario string, mensagem string) error {
+func (e *EmailServiceMock) EnviarEmail(destinatario, mensagem string) error {
 	e.Enviou = true
 	return nil
 }
