@@ -54,4 +54,72 @@ public class MyResult {
 
     return Math.abs(result.get(0) - result.get(1));
   }
+	 public int formingMagicSquare(List<List<Integer>> s) {
+	 List<List<List<Integer>>> cubeMagics = new ArrayList<>();
+
+    cubeMagics.add(Arrays.asList(
+        Arrays.asList(8, 1, 6),
+        Arrays.asList(3, 5, 7),
+        Arrays.asList(4, 9, 2)
+    ));
+
+    cubeMagics.add(Arrays.asList(
+        Arrays.asList(6, 1, 8),
+        Arrays.asList(7, 5, 3),
+        Arrays.asList(2, 9, 4)
+    ));
+
+    cubeMagics.add(Arrays.asList(
+        Arrays.asList(4, 9, 2),
+        Arrays.asList(3, 5, 7),
+        Arrays.asList(8, 1, 6)
+    ));
+
+    cubeMagics.add(Arrays.asList(
+        Arrays.asList(2, 9, 4),
+        Arrays.asList(7, 5, 3),
+        Arrays.asList(6, 1, 8)
+    ));
+
+    cubeMagics.add(Arrays.asList(
+        Arrays.asList(8, 3, 4),
+        Arrays.asList(1, 5, 9),
+        Arrays.asList(6, 7, 2)
+    ));
+
+    cubeMagics.add(Arrays.asList(
+        Arrays.asList(4, 3, 8),
+        Arrays.asList(9, 5, 1),
+        Arrays.asList(2, 7, 6)
+    ));
+
+    cubeMagics.add(Arrays.asList(
+        Arrays.asList(6, 7, 2),
+        Arrays.asList(1, 5, 9),
+        Arrays.asList(8, 3, 4)
+    ));
+
+    cubeMagics.add(Arrays.asList(
+        Arrays.asList(2, 7, 6),
+        Arrays.asList(9, 5, 1),
+        Arrays.asList(4, 3, 8)
+    ));
+
+    int minimumCost = Integer.MAX_VALUE;
+
+    for (List<List<Integer>> magic : cubeMagics) {
+      int currentCost = 0;
+
+      for (int i = 0; i < s.size(); i++) {
+        for (int j = 0; j < s.get(i).size(); j++) {
+          int original = s.get(i).get(j);
+          int target = magic.get(i).get(j);
+          currentCost += Math.abs(original - target);
+        }
+      }
+
+      minimumCost = Math.min(minimumCost, currentCost);
+    }
+    return minimumCost;
+  }
 }
