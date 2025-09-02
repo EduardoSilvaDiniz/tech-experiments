@@ -122,4 +122,40 @@ public class MyResult {
     }
     return minimumCost;
   }
+    public static String encryption(String s) {
+        var sNoSpace = s.replaceAll("\\s", "");
+        var sSize = Math.sqrt(sNoSpace.length());
+        int numColumns = (int) Math.floor(sSize);
+        int caractersOnLine = (int) Math.ceil(sSize);
+
+        System.out.println(sNoSpace.length());
+        System.out.println(numColumns);
+        System.out.println(caractersOnLine);
+        List<String> list = new ArrayList<>();
+
+        var caracterEnd = caractersOnLine;
+        var caracterStart = 0;
+        for (int i = 0; i < numColumns; i++) {
+            list.add(sNoSpace.substring(caracterStart, caracterEnd));
+            caracterStart = caracterEnd;
+            caracterEnd += caractersOnLine;
+        }
+
+        list.stream().forEach(System.out::println);
+
+        return String.join(" ",list);
+    }
+    public static int birthdayCakeCandles(List<Integer> candles) {
+        var candlesSorted = candles.stream().sorted().toList();
+        return (int) candlesSorted.stream().filter(val -> Objects.equals(val, candlesSorted.getLast())).count();
+
+    }
+    public static String timeConversion(String s) {
+        DateTimeFormatter formato12 = DateTimeFormatter.ofPattern("hh:mm:ssa");
+        DateTimeFormatter formato24 = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalTime hora = LocalTime.parse(s, formato12);
+        String hora24 = hora.format(formato24);
+
+        return hora24;
+    }
 }
